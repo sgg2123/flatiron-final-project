@@ -1,11 +1,7 @@
-class SessionsController < ApplicationController
+class Api::V1::SessionsController < ApplicationController
 
   def create
     @user = User.find_by(username: params["username"])
-    # secret_key = secret_key()
-
-    # puts 'login'
-    # byebug
 
     if (@user && @user.authenticate(params["password"]))
       # payload = { name: params["username"], id: @user.id }

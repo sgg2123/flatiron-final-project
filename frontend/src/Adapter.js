@@ -8,8 +8,8 @@ export default class Adapter {
       .then(r => r.json())
       .then(data => {
         const options = {compact: true, ignoreComment: true, spaces: 4};
-        const contractID = data[0]['contract_id'];
-        const facilityID = data[0]['facility_id'];
+        // const contractID = data[0]['contract_id'];
+        // const facilityID = data[0]['facility_id'];
         return (
           fetch(`https://cors-anywhere.herokuapp.com/http://api.amp.active.com/camping/campground/details?contractCode=CO&parkId=50032&api_key=hmn6tzctjc74t3268nr7t4uh`)
           // fetch(`https://cors-anywhere.herokuapp.com/https://www.reserveamerica.com/campgroundDetails.do?contractCode=${contractID}&parkId=${facilityID}&xml=true`)
@@ -57,7 +57,7 @@ export default class Adapter {
   }
 
   static login(username, password) {
-   return fetch(`http://localhost:3000/sessions/`, {
+   return fetch(`http://localhost:3000/api/v1/sessions/`, {
      method: 'POST',
      headers: {
        "Content-Type": 'application/json'

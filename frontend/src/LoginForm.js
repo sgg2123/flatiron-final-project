@@ -19,14 +19,16 @@ class LoginForm extends Component {
     Adapter.login(this.state.username, this.state.password)
       .then(res => res.json())
       .then(json => {
-        localStorage.setItem('token', json.token);
-        this.props.history.push("/");
+        if (json.token) {
+          localStorage.setItem('token', json.token);
+          this.props.history.push("/");
+        } else {
+          alert(json.errors)
+        }
       });
   }
 
   render() {
-    console.log('LoginForm', this.props);
-
     return (
       <div className="login">
         <form onSubmit={this.handleSubmit}>
