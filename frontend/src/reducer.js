@@ -13,6 +13,7 @@ const initialState = {
   imgs: [],
   searchTerm: '',
   siteList: [],
+  formSubmitted: false,
 };
 
 export default function reducer(state = initialState, action) {
@@ -28,6 +29,10 @@ export default function reducer(state = initialState, action) {
       return newState;
     case "UPDATE_SITE_LIST":
       return newState;
+    case "SUBMIT_FORM":
+      return newState
+    case "CLEAR_RESULTS":
+      return newState
     default:
       return state;
   }

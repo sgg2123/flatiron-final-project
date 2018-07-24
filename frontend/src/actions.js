@@ -41,3 +41,21 @@ export function updateSiteList(array) {
     }
   }
 }
+
+export function submitForm() {
+  return {
+    type: "SUBMIT_FORM",
+    payload: {
+      formSubmitted: true
+    }
+  }
+}
+
+export function clearResults() {
+  return {
+    type: "CLEAR_RESULTS",
+    payload: {
+      formSubmitted: false
+    }
+  }
+}

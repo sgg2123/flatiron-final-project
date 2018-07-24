@@ -11,8 +11,19 @@ class SiteList extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className='site-list'>
         <h1>SITE LIST</h1>
+        <ul>
+          {this.props.siteList.map(site => {
+            return (
+              <li
+                key={site['_attributes']['facilityID']}
+                onClick={()=>console.log(site['_attributes']['facilityID'])}
+              >{site['_attributes']['facilityName']}</li>
+            )
+          })}
+        </ul>
+
       </div>
     )
   }
@@ -20,7 +31,8 @@ class SiteList extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    searchTerm: state.searchTerm
+    searchTerm: state.searchTerm,
+    siteList: state.siteList,
   }
 }
 
