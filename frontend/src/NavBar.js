@@ -2,18 +2,22 @@ import React, { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 import Adapter from './Adapter';
 
+// <NavLink activeClassName="selected" exact to="/">Home</NavLink>
 const NavBar = (props) => {
   return (
     <header className="nav">
-      <NavLink activeClassName="selected" exact to="/">Home</NavLink>
         { Adapter.isLoggedIn() ?
-            <button onClick={() => {
-                Adapter.logout();
-                props.history.push("/login");
-              }}>Logout</button>
+            <Fragment>
+              <NavLink activeClassName="selected" exact to="/">Home</NavLink>
+              <NavLink activeClassName="selected" exact to="/profile">Profile</NavLink>
+              <button onClick={() => {
+                  Adapter.logout();
+                  props.history.push("/login");
+                }}>Logout</button>
+            </Fragment>
           :
             <Fragment>
-              <NavLink activeClassName="selected" exact to="/register">Registration</NavLink>
+              <NavLink activeClassName="selected" exact to="/register">Register</NavLink>
               <NavLink activeClassName="selected" exact to="/login">Login</NavLink>
             </Fragment>
         }

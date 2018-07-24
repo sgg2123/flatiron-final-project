@@ -10,27 +10,28 @@ import Welcome from './Welcome.js'
 import RegistrationForm from './RegistrationForm';
 import LoginForm from './LoginForm';
 import Adapter from './Adapter'
+import Logo from './Logo.js'
 
 // <Redirect to="/" />
 class App extends Component {
   render() {
     return (
       <div className="App">
-          <Route exact path="/" component={NavBar} />
-
-
           { Adapter.isLoggedIn() ?
               <Fragment>
+                <Logo />
+                <Route exact path="/" component={NavBar} />
                 <Route exact path="/" component={Welcome} />
-                <SimpleExample />
-                <SiteDetails />
                 <SearchBar />
-                <SiteList />
               </Fragment>
             :
               <Fragment>
-                <Route exact path="/register" component={(props) => <RegistrationForm {...props} />} />
-                <Route exact path="/login" component={(props) => <LoginForm {...props} />} />
+                <div className='login-page'>
+                  <Logo />
+                  <Route exact path="/" component={NavBar} />
+                  <Route exact path="/register" component={(props) => <RegistrationForm {...props} />} />
+                  <Route exact path="/login" component={(props) => <LoginForm {...props} />} />
+                </div>
               </Fragment>
           }
         </div>
