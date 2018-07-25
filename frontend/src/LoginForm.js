@@ -20,6 +20,7 @@ class LoginForm extends Component {
       .then(res => res.json())
       .then(json => {
         if (json.token) {
+          localStorage.setItem('username', json.username);
           localStorage.setItem('token', json.token);
           this.props.history.push("/");
         } else {

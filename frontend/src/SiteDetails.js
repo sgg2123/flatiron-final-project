@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 // import convert from 'xml-js';
 import UUID from 'uuid';
 import { connect } from 'react-redux';
@@ -23,13 +23,6 @@ class SiteDetails extends React.Component {
   //     imgs: [],
   //   }
   // }
-
-  componentDidMount = () => {
-    // fetch('http://localhost:3000/api/v1/sites')
-    // .then(r => r.json())
-    // .then(this.props.makeRequest)
-    Adapter.getDetails().then(newState => this.props.updateDetails(newState))
-  }
 
   // makeRequest = (data) => {
   //   const options = {compact: true, ignoreComment: true, spaces: 4}
@@ -63,22 +56,40 @@ class SiteDetails extends React.Component {
         <h1> {this.props.facility} </h1>
         <p><strong>Description: </strong></p>
         <p>{this.props.description}</p>
-        {this.props.imgs.map(img => <img key={UUID()} src={`https://www.reserveamerica.com/${img['_attributes']['realUrl']}`}></img>)}
+
+        {this.props.imgs.length ?
+          this.props.imgs.map(img => <img key={UUID()} src={`https://www.reserveamerica.com/${img['_attributes']['realUrl']}`}></img>)
+          :
+          null
+        }
+
         <p><strong>Address: </strong></p>
         <p>{this.props.streetAddress}</p>
         <p>{this.props.city}</p>
         <p>{this.props.state}</p>
         <p>{this.props.zip}</p>
-        <p>lat: {this.props.lat}</p>
-        <p>lng: {this.props.lng}</p>
-        <p><strong>Contact: </strong></p>
-          <ul>
-            {this.props.contact.map(contact => <li key={UUID()}>{contact['_attributes']['name']}: {contact['_attributes']['number']}</li>)}
-          </ul>
-        <p><strong>Amenities: </strong></p>
-        <ul>
-          {this.props.amenities.map(amenity => <li key={UUID()}>{amenity['_attributes']['name']}</li>)}
-        </ul>
+
+        {this.props.contact.length ?
+          (
+          <Fragment>
+            <p><strong>Contact: </strong></p>
+            <ul>{this.props.contact.map(contact => <li key={UUID()}>{contact['_attributes']['name']}: {contact['_attributes']['number']}</li>)}</ul>
+          </Fragment>
+          )
+          :
+          null
+        }
+
+        {this.props.amenities.length ?
+          (
+          <Fragment>
+            <p><strong>Amenities: </strong></p>
+            <ul>{this.props.amenities.map(amenity => <li key={UUID()}>{amenity['_attributes']['name']}</li>)}</ul>
+          </Fragment>
+          )
+          :
+          null
+        }
       </div>
 
     )
@@ -98,6 +109,8 @@ function mapStateToProps(state) {
     contact: state.contact,
     amenities: state.amenities,
     imgs: state.imgs,
+    contractID: state.contractID,
+    facilityID: state.facilityID,
   }
 }
 
@@ -106,7 +119,5 @@ function mapDispatchToProps(dispatch) {
     updateDetails: (details) => dispatch(updateDetails(details)),
   }
 }
-
-// export default SiteDetails;
 
 export default connect(mapStateToProps, mapDispatchToProps)(SiteDetails);

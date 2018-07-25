@@ -14,6 +14,8 @@ const initialState = {
   searchTerm: '',
   siteList: [],
   formSubmitted: false,
+  contractID: '',
+  facilityID: '',
 };
 
 export default function reducer(state = initialState, action) {
@@ -32,6 +34,8 @@ export default function reducer(state = initialState, action) {
     case "SUBMIT_FORM":
       return newState
     case "CLEAR_RESULTS":
+      return newState
+    case "UPDATE_SELECTED_SITE":
       return newState
     default:
       return state;

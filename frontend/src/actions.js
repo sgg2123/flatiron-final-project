@@ -59,3 +59,13 @@ export function clearResults() {
     }
   }
 }
+
+export function updateSelectedSite(contractID, facilityID) {
+  return {
+    type: "UPDATE_SELECTED_SITE",
+    payload: {
+      contractID,
+      facilityID,
+    }
+  }
+}
