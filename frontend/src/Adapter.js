@@ -3,8 +3,6 @@ import convert from 'xml-js';
 export default class Adapter {
   static getDetails(contractID, facilityID) {
     const options = {compact: true, ignoreComment: true, spaces: 4};
-    console.log(contractID)
-    console.log(facilityID)
     return (
       fetch(`https://cors-anywhere.herokuapp.com/http://api.amp.active.com/camping/campground/details?contractCode=${contractID}&parkId=${facilityID}&api_key=hmn6tzctjc74t3268nr7t4uh`)
       .then(r => r.text())
@@ -59,7 +57,7 @@ export default class Adapter {
    });
  }
 
- static getUsers() {
+ static getUser() {
    let token = localStorage.getItem('token')
    let config = {
    	method: 'GET',
@@ -68,11 +66,58 @@ export default class Adapter {
    		"Content-Type": 'application/json',
    	}
    }
-   return fetch('http://localhost:3000/api/v1/users', config).then(r => r.json())
+   return fetch('http://localhost:3000/api/v1/users', config)
+   .then(r => r.json())
+   .then(users => {
+     const currentUsername = localStorage.getItem('username')
+     return users.find(user => user.username === currentUsername)
+   })
  }
 
  static getInterests(id) {
-   return 'fetching user interests'
+   let token = localStorage.getItem('token')
+   let config = {
+   	method: 'GET',
+      headers: {
+   		"Authorization": token,
+   		"Content-Type": 'application/json',
+   	}
+   }
+   return fetch(`http://localhost:3000/api/v1/users/${id}/interests`, config)
+   .then(r => r.json())
+ }
+
+ static addToFavorites(contractID, facilityID, user) {
+   console.log(contractID, facilityID)
+   console.log(user)
+   let token = localStorage.getItem('token')
+   let config = {
+   	method: 'POST',
+      headers: {
+   		"Authorization": token,
+   		"Content-Type": 'application/json',
+   	}
+   }
+   // fetch('http://localhost:3000/api/v1/interests')
+ }
+
+ static getCampgroundNameFromCampgroundID(campgroundID) {
+   let token = localStorage.getItem('token')
+   let config = {
+   	method: 'GET',
+      headers: {
+   		"Authorization": token,
+   		"Content-Type": 'application/json',
+   	}
+   }
+   return fetch(`http://localhost:3000/api/v1/campgrounds/${campgroundID}`, config)
+   .then(r => r.json())
+   .then(campground => {
+     const contractID = campground['contract_id']
+     const facilityID = campground['facility_id']
+     return this.getDetails(contractID, facilityID)
+     .then(detailsObj => detailsObj['facility'])
+   })
  }
 
 }

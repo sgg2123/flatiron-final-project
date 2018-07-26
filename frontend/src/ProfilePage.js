@@ -1,32 +1,34 @@
 import React from 'react';
 import Adapter from './Adapter'
+import UUID from 'uuid'
 
 class ProfilePage extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      currentUser: {}
+      currentUser: {},
+      interests: [],
+      names: [],
     }
   }
 
-  getUsername = () => {
-    return localStorage.getItem('username')
-  }
-
-  setInterests = () => {
-    const id = this.state.currentUser.id
-    return Adapter.getInterests(id)
-  }
-
   componentDidMount = () => {
-    Adapter.getUsers()
-    .then(users => {
-      const currentUsername = this.getUsername()
-      const foundUser = users.find(user => user.username === currentUsername)
-      console.log(foundUser)
-      this.setState({
-        currentUser: foundUser
+    Adapter.getUser()
+    .then(user => {
+      this.setState({ currentUser: user })
+      Adapter.getInterests(user.id)
+      .then(interests => {
+        this.setState({ interests })
+        let names = []
+        interests.forEach(interest => {
+          const campgroundID = interest['campground_id']
+          Adapter.getCampgroundNameFromCampgroundID(campgroundID) //park 1
+          .then(name => {
+            names.push(name)
+            this.setState({ names })
+          })
+        })
       })
     })
   }
@@ -34,14 +36,19 @@ class ProfilePage extends React.Component {
   render() {
     return (
       <div>
-        <h1>{this.getUsername()}</h1>
+        <h1>{this.state.currentUser['username']}</h1>
         <p>{this.state.currentUser['first_name']} {this.state.currentUser['last_name']}</p>
         <p>Your Interests:</p>
-        <p>{this.setInterests()}</p>
+        <ul>
+          {(this.state.names.length > 0) ?
+            this.state.names.map(name => <li key={UUID()}>{name}</li>)
+            :
+            null
+          }
+        </ul>
       </div>
     )
   }
 }
 
-// export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage);
 export default ProfilePage;

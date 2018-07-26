@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Adapter from './Adapter.js';
 import { updateDetails } from './actions';
-// import { updateSelectedSite } from './actions';
+import { updateSelectedSite } from './actions';
 
 class SiteList extends React.Component {
   componentDidMount = () => {
@@ -11,7 +11,7 @@ class SiteList extends React.Component {
   }
 
   handleClick = (contractID, facilityID) => {
-    // updateSelectedSite(contractID, facilityID)
+    this.props.updateSelectedSite(contractID, facilityID)
     Adapter.getDetails(contractID, facilityID).then((newState => this.props.updateDetails(newState)))
     this.props.history.push("/details")
   }
@@ -27,7 +27,7 @@ class SiteList extends React.Component {
               const facilityName = site['_attributes']['facilityName']
               return (
                 <li
-                  key={facilityID}
+                  key={`${facilityName}-${facilityID}`}
                   onClick={() => {
                     this.handleClick(contractID, facilityID)
                   }}
@@ -45,6 +45,8 @@ function mapStateToProps(state) {
   return {
     searchTerm: state.searchTerm,
     siteList: state.siteList,
+    contractID: state.contractID,
+    facilityID: state.facilityID,
   }
 }
 
@@ -52,7 +54,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     updateDetails: (newState) => dispatch(updateDetails(newState)),
-    // updateSelectedSite: (contractID, facilityID) => dispatch(updateSelectedSite(contractID, facilityID)),
+    updateSelectedSite: (contractID, facilityID) => dispatch(updateSelectedSite(contractID, facilityID)),
   }
 }
 

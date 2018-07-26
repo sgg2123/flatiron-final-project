@@ -1,5 +1,5 @@
 class Api::V1::UsersController < ApplicationController
-  before_action :requires_login, only: [:index, :show, :interests]
+  before_action :requires_login, only: [:index, :show, :user_interests]
   # before_action :is_admin, only: [:index]
 
   def index
@@ -30,7 +30,7 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
-  def interests
+  def user_interests
     @user = User.find_by(id: params[:user_id])
 
     render json: @user.interests

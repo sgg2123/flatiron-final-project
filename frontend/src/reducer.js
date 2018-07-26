@@ -14,8 +14,8 @@ const initialState = {
   searchTerm: '',
   siteList: [],
   formSubmitted: false,
-  contractID: '',
-  facilityID: '',
+  contractID: 'hello',
+  facilityID: 'hello',
 };
 
 export default function reducer(state = initialState, action) {

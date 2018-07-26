@@ -6,6 +6,13 @@ import Adapter from './Adapter.js';
 import { updateDetails } from './actions';
 
 class SiteDetails extends React.Component {
+  handleFavorite = () => {
+    console.log(this.props);
+    Adapter.getUser().then(user => {
+      Adapter.addToFavorites(this.props.contractID, this.props.facilityID, user)
+    })
+
+  }
   // constructor() {
   //   super();
   //
@@ -90,6 +97,7 @@ class SiteDetails extends React.Component {
           :
           null
         }
+        <button onClick={this.handleFavorite}>💚</button>
       </div>
 
     )

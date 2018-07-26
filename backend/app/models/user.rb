@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :interests
   has_many :campgrounds, through: :interests
 
   has_secure_password
