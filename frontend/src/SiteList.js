@@ -10,8 +10,8 @@ class SiteList extends React.Component {
     // Adapter.getCampgrounds(38.8947222, -105.1794444)
   }
 
-  handleClick = (contractID, facilityID) => {
-    this.props.updateSelectedSite(contractID, facilityID)
+  handleClick = (contractID, facilityID, facilityName) => {
+    this.props.updateSelectedSite(contractID, facilityID, facilityName)
     Adapter.getDetails(contractID, facilityID).then((newState => this.props.updateDetails(newState)))
     this.props.history.push("/details")
   }
@@ -29,7 +29,7 @@ class SiteList extends React.Component {
                 <li
                   key={`${facilityName}-${facilityID}`}
                   onClick={() => {
-                    this.handleClick(contractID, facilityID)
+                    this.handleClick(contractID, facilityID, facilityName)
                   }}
                 >{facilityName}
                 </li>
@@ -54,7 +54,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     updateDetails: (newState) => dispatch(updateDetails(newState)),
-    updateSelectedSite: (contractID, facilityID) => dispatch(updateSelectedSite(contractID, facilityID)),
+    updateSelectedSite: (contractID, facilityID, facilityName) => dispatch(updateSelectedSite(contractID, facilityID, facilityName)),
   }
 }
 

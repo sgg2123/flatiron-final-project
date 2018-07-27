@@ -78,7 +78,7 @@ export default class Adapter {
    let token = localStorage.getItem('token')
    let config = {
    	method: 'GET',
-      headers: {
+    headers: {
    		"Authorization": token,
    		"Content-Type": 'application/json',
    	}
@@ -87,37 +87,57 @@ export default class Adapter {
    .then(r => r.json())
  }
 
- static addToFavorites(contractID, facilityID, user) {
-   console.log(contractID, facilityID)
+ static addToFavorites(contract_id, facility_id, facility_name, user) {
+   console.log(contract_id, facility_id, facility_name)
    console.log(user)
+
+   let user_id = user.id
+
    let token = localStorage.getItem('token')
+
    let config = {
    	method: 'POST',
-      headers: {
+    headers: {
    		"Authorization": token,
    		"Content-Type": 'application/json',
-   	}
+   	},
+    body: JSON.stringify({ contract_id, facility_id, facility_name })
    }
-   // fetch('http://localhost:3000/api/v1/interests')
- }
-
- static getCampgroundNameFromCampgroundID(campgroundID) {
-   let token = localStorage.getItem('token')
-   let config = {
-   	method: 'GET',
-      headers: {
-   		"Authorization": token,
-   		"Content-Type": 'application/json',
-   	}
-   }
-   return fetch(`http://localhost:3000/api/v1/campgrounds/${campgroundID}`, config)
+   return fetch(`http://localhost:3000/api/v1/campgrounds`, config)
    .then(r => r.json())
-   .then(campground => {
-     const contractID = campground['contract_id']
-     const facilityID = campground['facility_id']
-     return this.getDetails(contractID, facilityID)
-     .then(detailsObj => detailsObj['facility'])
+   .then(json => {
+     const campground_id= json['campground_id']
+
+     let config = {
+     	method: 'POST',
+      headers: {
+     		"Authorization": token,
+     		"Content-Type": 'application/json',
+     	},
+      body: JSON.stringify({ user_id , campground_id, facility_name })
+     }
+     return fetch('http://localhost:3000/api/v1/interests', config)
+     .then(r => r.json())
    })
  }
+
+ // static getCampgroundNameFromCampgroundID(campgroundID) {
+ //   let token = localStorage.getItem('token')
+ //   let config = {
+ //   	method: 'GET',
+ //    headers: {
+ //   		"Authorization": token,
+ //   		"Content-Type": 'application/json',
+ //   	}
+ //   }
+ //   return fetch(`http://localhost:3000/api/v1/campgrounds/${campgroundID}`, config)
+ //   .then(r => r.json())
+ //   .then(campground => {
+ //     const contractID = campground['contract_id']
+ //     const facilityID = campground['facility_id']
+ //     return this.getDetails(contractID, facilityID)
+ //     .then(detailsObj => detailsObj['facility'])
+ //   })
+ // }
 
 }

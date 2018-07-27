@@ -16,6 +16,7 @@ const initialState = {
   formSubmitted: false,
   contractID: 'hello',
   facilityID: 'hello',
+  facilityName: 'hello',
 };
 
 export default function reducer(state = initialState, action) {

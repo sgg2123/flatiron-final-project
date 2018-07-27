@@ -8,7 +8,7 @@ class ProfilePage extends React.Component {
 
     this.state = {
       currentUser: {},
-      interests: [],
+      // interests: [],
       names: [],
     }
   }
@@ -19,16 +19,19 @@ class ProfilePage extends React.Component {
       this.setState({ currentUser: user })
       Adapter.getInterests(user.id)
       .then(interests => {
-        this.setState({ interests })
-        let names = []
-        interests.forEach(interest => {
-          const campgroundID = interest['campground_id']
-          Adapter.getCampgroundNameFromCampgroundID(campgroundID) //park 1
-          .then(name => {
-            names.push(name)
-            this.setState({ names })
-          })
-        })
+        // this.setState({ interests })
+        const names = interests.map(interest => interest['facility_name'])
+        this.setState({ names })
+
+        // let names = []
+        // interests.forEach(interest => {
+        //   const campgroundID = interest['campground_id']
+        //   Adapter.getCampgroundNameFromCampgroundID(campgroundID) //park 1
+        //   .then(name => {
+        //     names.push(name)
+        //     this.setState({ names })
+        //   })
+        // })
       })
     })
   }

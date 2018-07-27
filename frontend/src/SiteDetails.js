@@ -9,7 +9,8 @@ class SiteDetails extends React.Component {
   handleFavorite = () => {
     console.log(this.props);
     Adapter.getUser().then(user => {
-      Adapter.addToFavorites(this.props.contractID, this.props.facilityID, user)
+      Adapter.addToFavorites(this.props.contractID, this.props.facilityID, this.props.facilityName, user)
+      .then(json => alert(json.message))
     })
 
   }
@@ -119,6 +120,7 @@ function mapStateToProps(state) {
     imgs: state.imgs,
     contractID: state.contractID,
     facilityID: state.facilityID,
+    facilityName: state.facilityName,
   }
 }
 
