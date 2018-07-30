@@ -3,7 +3,7 @@ import React from 'react';
 // import { render } from 'react-dom';
 // import { map, Marker, Popup, tileLayer } from 'react-leaflet'
 // import ReactDOM from 'react-dom'
-import * as eeGeo from 'wrld.js';
+import * as eeGeo from 'eegeo.js';
 import L from 'leaflet'
 
 import { connect } from 'react-redux';
@@ -41,23 +41,25 @@ import { toggle3D } from './actions.js';
 class SimpleExample extends React.Component {
 
   componentDidMount = () => {
-    const map = L.map('map', {
-     center: [this.props.lat, this.props.lng],
-     zoom: 15
-    });
-    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
+    // const map = L.map('map', {
+    //  center: [this.props.lat, this.props.lng],
+    //  zoom: 15
+    // });
+    // L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    //  attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    // }).addTo(map);
+    // var marker = L.marker([this.props.lat, this.props.lng]).addTo(map);
   }
 
   componentWillReceiveProps = (nextprops) => {
     const mapContainer = document.getElementById('map-container')
     mapContainer.innerHTML = '<div id="map"></div>'
     if (nextprops.toggled3D === true) {
-      eeGeo.map('map', 'c3d75ab06945250a4c588425ce33a8f2', {
+      const map = eeGeo.map('map', 'c3d75ab06945250a4c588425ce33a8f2', {
        center: [nextprops.lat, nextprops.lng],
-       zoom: 15
+       zoom: 15,
      });
+     var marker = eeGeo.marker([nextprops.lat, nextprops.lng], { title: "My marker" }).addTo(map);
    } else {
      const map = L.map('map', {
        center: [nextprops.lat, nextprops.lng],
@@ -66,6 +68,7 @@ class SimpleExample extends React.Component {
      L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
      }).addTo(map);
+     var marker = L.marker([nextprops.lat, nextprops.lng]).addTo(map);
    }
   }
 

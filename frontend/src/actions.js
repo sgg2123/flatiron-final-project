@@ -25,10 +25,13 @@ export function updateDetails(details) {
 }
 
 export function handleSearchChange(event) {
+  const target = event.target;
+  const value = target.type === 'checkbox' ? target.checked : target.value;
+  const name = target.name;
   return {
     type: "HANDLE_SEARCH_CHANGE",
     payload: {
-      searchTerm: event.target.value
+      [name]: value
     }
   }
 }

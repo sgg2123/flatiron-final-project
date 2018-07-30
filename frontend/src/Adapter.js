@@ -27,10 +27,27 @@ export default class Adapter {
     )
   }
 
-  static getCampgrounds(lat, lng) {
+  static getCampgrounds(lat, lng, filters) {
+    console.log(filters)
     const options = {compact: true, ignoreComment: true, spaces: 4};
+    let URL = `https://cors-anywhere.herokuapp.com/http://api.amp.active.com/camping/campgrounds/?landmarkLat=${lat}&landmarkLong=${lng}&landmarkName=true&api_key=hmn6tzctjc74t3268nr7t4uh`
+    if (filters.sewer) {
+      URL+='&sewer=3007'
+    }
+    if (filters.water) {
+      URL+='&water=3006'
+    }
+    if (filters.pull) {
+      URL+='&pull=3008'
+    }
+    if (filters.pets) {
+      URL+='&pets=3010'
+    }
+    if (filters.waterfront) {
+      URL+='&waterfront=3011'
+    }
     return (
-      fetch(`https://cors-anywhere.herokuapp.com/http://api.amp.active.com/camping/campgrounds/?landmarkLat=${lat}&landmarkLong=${lng}&landmarkName=true&api_key=hmn6tzctjc74t3268nr7t4uh`)
+      fetch(URL)
       .then(r => r.text())
       .then(xml => convert.xml2json(xml, options))
       .then(jsonStr => JSON.parse(jsonStr))
