@@ -1,6 +1,7 @@
 import React from 'react';
 import Adapter from './Adapter'
 import UUID from 'uuid'
+import SearchBar from './SearchBar.js'
 
 class ProfilePage extends React.Component {
   constructor() {
@@ -36,19 +37,22 @@ class ProfilePage extends React.Component {
     })
   }
 
+  handleClick = () => {
+    console.log('clicked')
+  }
+
   render() {
     return (
-      <div>
-        <h1>{this.state.currentUser['username']}</h1>
-        <p>{this.state.currentUser['first_name']} {this.state.currentUser['last_name']}</p>
+      <div className='profile-page'>
+        <h1>{this.state.currentUser['first_name']} {this.state.currentUser['last_name']}</h1>
+        <p>Username: {this.state.currentUser['username']}</p>
         <p>Your Interests:</p>
-        <ul>
-          {(this.state.names.length > 0) ?
-            this.state.names.map(name => <li key={UUID()}>{name}</li>)
-            :
-            null
-          }
-        </ul>
+        {(this.state.names.length > 0) ?
+          this.state.names.map(name => <li key={UUID()} onClick={this.handleClick}>{name}</li>)
+          :
+          <SearchBar />
+        }
+        <button>Edit Profile</button>
       </div>
     )
   }

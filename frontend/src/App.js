@@ -21,7 +21,7 @@ class App extends Component {
           { Adapter.isLoggedIn() ?
               <Fragment>
                 <Route path="/" component={(props) => <Logo {...props} />} />
-                <Route exact path="/" component={NavBar} />
+                <Route path="/" component={NavBar} />
                 <Route exact path="/" component={Welcome} />
                 <Route exact path="/" component={(props) => <SearchBar {...props} />} />
                 <Route exact path="/results" component={SiteList} />

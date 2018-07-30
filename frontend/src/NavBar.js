@@ -8,8 +8,8 @@ const NavBar = (props) => {
     <header className="nav">
         { Adapter.isLoggedIn() ?
             <Fragment>
-              <NavLink activeClassName="selected" exact to="/">Home</NavLink>
-              <NavLink activeClassName="selected" exact to="/profile">Profile</NavLink>
+              <NavLink activeClassName="selected" exact to="/">HOME</NavLink>
+              <NavLink activeClassName="selected" exact to="/profile">PROFILE</NavLink>
               <button onClick={() => {
                   Adapter.logout();
                   props.history.push("/login");

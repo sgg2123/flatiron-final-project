@@ -26,25 +26,24 @@ class SearchBar extends React.Component {
   render() {
     return (
       <div id='search-bar'>
-        <h1>SEARCH HERE</h1>
 
-        <form onSubmit={this.handleSubmit}>
-          <input className="search-bar"
+        <form className='form-input' onSubmit={this.handleSubmit}>
+          <input
             type='text'
             value={this.props.searchTerm}
             onChange={this.props.handleSearchChange}
-            placeholder="search campsites"
+            placeholder="Enter a location by city, state, or zip"
           />
-          <input className="submit"
+        <input
             type='submit'
-            value='submit'
+            value='Find campgrounds!'
           />
         </form>
 
         { this.props.formSubmitted ?
           <SiteList />
         :
-          <p>form not yet submitted</p>
+          null
         }
 
       </div>

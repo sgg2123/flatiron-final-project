@@ -4,6 +4,7 @@ import UUID from 'uuid';
 import { connect } from 'react-redux';
 import Adapter from './Adapter.js';
 import { updateDetails } from './actions';
+import SimpleExample from './SimpleExample';
 
 class SiteDetails extends React.Component {
   handleFavorite = () => {
@@ -98,6 +99,7 @@ class SiteDetails extends React.Component {
           :
           null
         }
+        <SimpleExample />
         <button onClick={this.handleFavorite}>💚</button>
       </div>
 

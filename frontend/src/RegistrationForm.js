@@ -4,6 +4,8 @@ class RegistrationForm extends Component {
   state = {
     username: "",
     password: "",
+    first_name: "",
+    last_name: "",
   }
 
   handleChange = (event) => {
@@ -25,6 +27,7 @@ class RegistrationForm extends Component {
       .then(res => res.json())
       .then(json => {
         if (json.token) {
+          localStorage.setItem('username', json.username);
           localStorage.setItem('token', json.token);
           this.props.history.push("/");
         } else {
@@ -53,6 +56,22 @@ class RegistrationForm extends Component {
             placeholder="Password"
             onChange={this.handleChange}
             value={this.state.password}
+          />
+        <label htmlFor="password">First Name</label>
+          <input
+            type="text"
+            name="first_name"
+            placeholder="First Name"
+            onChange={this.handleChange}
+            value={this.state.first_name}
+          />
+        <label htmlFor="password">Last Name</label>
+          <input
+            type="text"
+            name="last_name"
+            placeholder="Last Name"
+            onChange={this.handleChange}
+            value={this.state.last_name}
           />
           <input type="submit" value="Register" />
         </form>
