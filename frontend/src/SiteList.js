@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Adapter from './Adapter.js';
 import { updateDetails } from './actions';
 import { updateSelectedSite } from './actions';
+import { withRouter } from 'react-router';
 
 class SiteList extends React.Component {
   componentDidMount = () => {
@@ -58,4 +59,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SiteList);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SiteList));

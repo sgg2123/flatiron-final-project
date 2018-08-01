@@ -155,4 +155,9 @@ export default class Adapter {
 
  }
 
+ static getCampgroundFromInterest(interestID) {
+   return fetch(`http://localhost:3000/api/v1/interests/${interestID}/campground`)
+   .then(r => r.json())
+ }
+
 }

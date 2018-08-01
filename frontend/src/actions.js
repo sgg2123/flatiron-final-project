@@ -73,3 +73,21 @@ export function updateSelectedSite(contractID, facilityID, facilityName) {
     }
   }
 }
+
+export function takeTour() {
+  return {
+    type: "TAKE_TOUR",
+    payload: {
+      touring3D: true
+    }
+  }
+}
+
+export function endTour() {
+  return {
+    type: "END_TOUR",
+    payload: {
+      touring3D: false
+    }
+  }
+}

@@ -22,6 +22,7 @@ const initialState = {
   contractID: 'hello',
   facilityID: 'hello',
   facilityName: 'hello',
+  touring3D: false,
 };
 
 export default function reducer(state = initialState, action) {
@@ -42,6 +43,10 @@ export default function reducer(state = initialState, action) {
     case "CLEAR_RESULTS":
       return newState
     case "UPDATE_SELECTED_SITE":
+      return newState
+    case "TAKE_TOUR":
+      return newState
+    case "END_TOUR":
       return newState
     default:
       return state;

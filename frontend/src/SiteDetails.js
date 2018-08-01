@@ -19,8 +19,17 @@ class SiteDetails extends React.Component {
     return (
       <div>
         <h1> {this.props.facility} </h1>
-        <p><strong>Description: </strong></p>
-        <p>{this.props.description}</p>
+        {
+          this.props.description ?
+          (
+          <Fragment>
+            <p><strong>Description: </strong></p>
+            <p>{this.props.description}</p>
+          </Fragment>
+          )
+          :
+          null
+        }
 
         {this.props.imgs.length ?
           this.props.imgs.map(img => <img key={UUID()} src={`https://www.reserveamerica.com/${img['_attributes']['realUrl']}`}></img>)
@@ -28,8 +37,18 @@ class SiteDetails extends React.Component {
           null
         }
 
-        <p><strong>Address: </strong></p>
-        <p>{this.props.streetAddress}</p>
+        {
+          this.props.streetAddress ?
+          (
+          <Fragment>
+            <p><strong>Address: </strong></p>
+            <p>{this.props.streetAddress}</p>
+          </Fragment>
+          )
+          :
+          null
+        }
+
         <p>{this.props.city}</p>
         <p>{this.props.state}</p>
         <p>{this.props.zip}</p>
@@ -55,8 +74,19 @@ class SiteDetails extends React.Component {
           :
           null
         }
-        <SiteMap />
-        <button onClick={this.handleFavorite}>💚</button>
+
+        {
+          this.props.facility ?
+          (
+            <Fragment>
+              <SiteMap />
+              <button onClick={this.handleFavorite}>💚</button>
+            </Fragment>
+          )
+          :
+          null
+        }
+
       </div>
 
     )

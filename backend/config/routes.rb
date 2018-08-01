@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :campgrounds, only: [:index, :show, :create]
       resources :interests, only: [:index, :create]
       get 'users/:user_id/interests', to: 'users#user_interests'
+      get 'interests/:interest_id/campground', to: 'interests#campground'
     end
   end
 end

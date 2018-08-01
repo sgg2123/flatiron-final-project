@@ -1,5 +1,5 @@
 class Api::V1::InterestsController < ApplicationController
-  before_action :requires_login
+  before_action :requires_login, except:[:campground]
 
   def index
     render json: Interest.all
@@ -30,5 +30,13 @@ class Api::V1::InterestsController < ApplicationController
         }, status: :unprocessable_entity
       end
     end
+  end
+
+  def campground
+    @interest = Interest.find_by(id: params[:interest_id])
+    render json: {
+      contract_id: @interest.campground.contract_id,
+      facility_id: @interest.campground.facility_id
+    }
   end
 end
