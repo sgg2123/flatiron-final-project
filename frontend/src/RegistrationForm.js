@@ -57,7 +57,7 @@ class RegistrationForm extends Component {
             onChange={this.handleChange}
             value={this.state.password}
           />
-        <label htmlFor="password">First Name</label>
+        <label htmlFor="first_name">First Name</label>
           <input
             type="text"
             name="first_name"
@@ -65,7 +65,7 @@ class RegistrationForm extends Component {
             onChange={this.handleChange}
             value={this.state.first_name}
           />
-        <label htmlFor="password">Last Name</label>
+        <label htmlFor="last_name">Last Name</label>
           <input
             type="text"
             name="last_name"

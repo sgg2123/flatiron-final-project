@@ -138,23 +138,21 @@ export default class Adapter {
    })
  }
 
- // static getCampgroundNameFromCampgroundID(campgroundID) {
- //   let token = localStorage.getItem('token')
- //   let config = {
- //   	method: 'GET',
- //    headers: {
- //   		"Authorization": token,
- //   		"Content-Type": 'application/json',
- //   	}
- //   }
- //   return fetch(`http://localhost:3000/api/v1/campgrounds/${campgroundID}`, config)
- //   .then(r => r.json())
- //   .then(campground => {
- //     const contractID = campground['contract_id']
- //     const facilityID = campground['facility_id']
- //     return this.getDetails(contractID, facilityID)
- //     .then(detailsObj => detailsObj['facility'])
- //   })
- // }
+ static editUser(currentUser, username, first_name, last_name, password) {
+   console.log(currentUser.id)
+   let token = localStorage.getItem('token')
+
+   let config = {
+   	method: 'PATCH',
+    headers: {
+   		"Authorization": token,
+   		"Content-Type": 'application/json',
+   	},
+    body: JSON.stringify({ username, password, first_name, last_name })
+   }
+   return fetch(`http://localhost:3000/api/v1/users/${currentUser.id}`, config)
+   .then(r => r.json())
+
+ }
 
 }

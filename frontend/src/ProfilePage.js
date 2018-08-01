@@ -2,6 +2,7 @@ import React from 'react';
 import Adapter from './Adapter'
 import UUID from 'uuid'
 import SearchBar from './SearchBar.js'
+import { withRouter } from 'react-router';
 
 class ProfilePage extends React.Component {
   constructor() {
@@ -26,6 +27,11 @@ class ProfilePage extends React.Component {
 
   handleClick = () => {
     console.log('clicked')
+  }
+
+  handleEditUser = () => {
+    console.log('edit user')
+    this.props.history.push('/profile/edit');
   }
 
   render() {
@@ -53,7 +59,7 @@ class ProfilePage extends React.Component {
           :
           <SearchBar />
         }
-          <button className='ui primary button' role='button' onClick={this.handleClick}>
+          <button className='ui primary button' role='button' onClick={this.handleEditUser}>
             Edit Profile
           </button>
           <button className='ui secondary button' role='button' onClick={this.handleClick}>
@@ -67,4 +73,4 @@ class ProfilePage extends React.Component {
   }
 }
 
-export default ProfilePage;
+export default withRouter(ProfilePage);

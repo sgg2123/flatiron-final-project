@@ -11,6 +11,7 @@ import LoginForm from './LoginForm';
 import Adapter from './Adapter'
 import Logo from './Logo.js'
 import ProfilePage from './ProfilePage'
+import EditProfilePage from './EditProfilePage'
 
 // <Redirect to="/" />
 class App extends Component {
@@ -26,6 +27,7 @@ class App extends Component {
                 <Route exact path="/results" component={SiteList} />
                 <Route exact path="/details" component={SiteDetails} />
                 <Route exact path="/profile" component={ProfilePage} />
+                <Route exact path="/profile/edit" component={EditProfilePage} />
               </Fragment>
             :
               <Fragment>
