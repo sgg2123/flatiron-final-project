@@ -12,7 +12,7 @@ class Logo extends React.Component {
   render() {
     return (
       <div className='logo' onClick={this.handleClick}>
-        <h1>CAMPMASTER</h1>
+        <h1>CAMPHUB</h1>
       </div>
     )
   }

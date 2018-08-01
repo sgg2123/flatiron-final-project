@@ -1,22 +1,21 @@
 import React from 'react';
 import Adapter from './Adapter';
 import { withRouter } from 'react-router';
-import withColor from '../hocs/withColor';
+import { Menu } from 'semantic-ui-react';
 
-const LogoutButton = ({ to = "/login", history, color }) => {
-  console.log(color);
+const LogoutButton = ({ to = "/login", history }) => {
     return (
-      <button
+      <Menu.Item
         className="logout-button"
-        style={{ backgroundColor: color }}
+        position="right"
         onClick={() => {
           Adapter.logout();
           history.push(to);
         }}
       >
         Logout
-      </button>
+      </Menu.Item>
     )
 }
 
-export default withColor(withRouter(LogoutButton));
+export default withRouter(LogoutButton);

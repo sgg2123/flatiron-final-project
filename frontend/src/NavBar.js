@@ -1,25 +1,23 @@
 import React, { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 import Adapter from './Adapter';
+import { Menu } from 'semantic-ui-react';
+import LogoutButton from './LogoutButton.js'
 
-// <NavLink activeClassName="selected" exact to="/">Home</NavLink>
 const NavBar = (props) => {
   return (
     <header className="nav">
         { Adapter.isLoggedIn() ?
-            <Fragment>
-              <NavLink activeClassName="selected" exact to="/">HOME</NavLink>
-              <NavLink activeClassName="selected" exact to="/profile">PROFILE</NavLink>
-              <button onClick={() => {
-                  Adapter.logout();
-                  props.history.push("/login");
-                }}>Logout</button>
-            </Fragment>
+            <Menu style={{background: "none", flex: 1, webkitTextStroke: "1px black", fontSize: "20pt"}}>
+              <Menu.Item  as={NavLink} exact to="/">HOME</Menu.Item>
+              <Menu.Item  as={NavLink} exact to="/profile">PROFILE</Menu.Item>
+              <LogoutButton />
+            </Menu>
           :
-            <Fragment>
-              <NavLink activeClassName="selected" exact to="/register">Register</NavLink>
-              <NavLink activeClassName="selected" exact to="/login">Login</NavLink>
-            </Fragment>
+            <Menu style={{background: "none", flex: 1, webkitTextStroke: "1px black", fontSize: "20pt"}}>
+              <Menu.Item style={{position: "fixed", left:'10%'}} as={NavLink} exact to="/register">Register</Menu.Item>
+              <Menu.Item style={{position: "fixed", right:'10%'}} as={NavLink} exact to="/login">Login</Menu.Item>
+            </Menu>
         }
     </header>
   )

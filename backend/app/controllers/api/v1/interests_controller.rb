@@ -14,6 +14,8 @@ class Api::V1::InterestsController < ApplicationController
       @interest.user_id = params[:user_id]
       @interest.campground_id = params[:campground_id]
       @interest.facility_name = params[:facility_name]
+      @interest.city = params[:city]
+      @interest.state = params[:state]
 
       if (@interest.save)
         render json: {

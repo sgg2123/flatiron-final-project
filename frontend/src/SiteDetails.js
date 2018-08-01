@@ -4,60 +4,16 @@ import UUID from 'uuid';
 import { connect } from 'react-redux';
 import Adapter from './Adapter.js';
 import { updateDetails } from './actions';
-import SimpleExample from './SimpleExample';
+import SiteMap from './SiteMap';
 
 class SiteDetails extends React.Component {
   handleFavorite = () => {
     console.log(this.props);
     Adapter.getUser().then(user => {
-      Adapter.addToFavorites(this.props.contractID, this.props.facilityID, this.props.facilityName, user)
+      Adapter.addToFavorites(this.props.contractID, this.props.facilityID, this.props.facilityName, user, this.props.city, this.props.state)
       .then(json => alert(json.message))
     })
-
   }
-  // constructor() {
-  //   super();
-  //
-  //   this.state = {
-  //     facility: '',
-  //     lat: '',
-  //     lng: '',
-  //     description: '',
-  //     streetAddress: '',
-  //     city: '',
-  //     state: '',
-  //     zip: '',
-  //     contact: [],
-  //     amenities: [],
-  //     imgs: [],
-  //   }
-  // }
-
-  // makeRequest = (data) => {
-  //   const options = {compact: true, ignoreComment: true, spaces: 4}
-  //   const contractID = data[0]['contract_id'];
-  //   const facilityID = data[0]['facility_id'];
-  //   fetch(`https://cors-anywhere.herokuapp.com/https://www.reserveamerica.com/campgroundDetails.do?contractCode=${contractID}&parkId=${facilityID}&xml=true`)
-  //   .then(r => r.text())
-  //   .then(xml => convert.xml2json(xml, options))
-  //   .then(jsonStr => {
-  //     const obj = JSON.parse(jsonStr);
-  //     console.log(obj['detailDescription'])
-  //     this.setState({
-  //       facility: obj['detailDescription']['_attributes']['facility'],
-  //       lat: parseFloat(obj['detailDescription']['_attributes']['latitude']),
-  //       lng: parseFloat(obj['detailDescription']['_attributes']['longitude']),
-  //       description: obj['detailDescription']['_attributes']['description'],
-  //       streetAddress: obj['detailDescription']['address']['_attributes']['streetAddress'],
-  //       city: obj['detailDescription']['address']['_attributes']['city'],
-  //       state: obj['detailDescription']['address']['_attributes']['state'],
-  //       zip: obj['detailDescription']['address']['_attributes']['zip'],
-  //       contact: obj['detailDescription']['contact'],
-  //       amenities: obj['detailDescription']['amenity'],
-  //       imgs: obj['detailDescription']['photo'],
-  //     })
-  //   })
-  // }
 
   render() {
     return (
@@ -99,7 +55,7 @@ class SiteDetails extends React.Component {
           :
           null
         }
-        <SimpleExample />
+        <SiteMap />
         <button onClick={this.handleFavorite}>💚</button>
       </div>
 

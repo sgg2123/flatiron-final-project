@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import NavBar from './NavBar';
 import './App.css';
-import SimpleExample from './SimpleExample.js';
 import SiteDetails from './SiteDetails.js'
 import SearchBar from './SearchBar.js'
 import SiteList from './SiteList.js'

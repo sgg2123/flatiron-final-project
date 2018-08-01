@@ -104,8 +104,8 @@ export default class Adapter {
    .then(r => r.json())
  }
 
- static addToFavorites(contract_id, facility_id, facility_name, user) {
-   console.log(contract_id, facility_id, facility_name)
+ static addToFavorites(contract_id, facility_id, facility_name, user, city, state) {
+   console.log(contract_id, facility_id, facility_name, city, state)
    console.log(user)
 
    let user_id = user.id
@@ -118,7 +118,7 @@ export default class Adapter {
    		"Authorization": token,
    		"Content-Type": 'application/json',
    	},
-    body: JSON.stringify({ contract_id, facility_id, facility_name })
+    body: JSON.stringify({ contract_id, facility_id, facility_name, city, state })
    }
    return fetch(`http://localhost:3000/api/v1/campgrounds`, config)
    .then(r => r.json())
@@ -131,7 +131,7 @@ export default class Adapter {
      		"Authorization": token,
      		"Content-Type": 'application/json',
      	},
-      body: JSON.stringify({ user_id , campground_id, facility_name })
+      body: JSON.stringify({ user_id , campground_id, facility_name, city, state })
      }
      return fetch('http://localhost:3000/api/v1/interests', config)
      .then(r => r.json())

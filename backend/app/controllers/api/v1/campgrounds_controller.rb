@@ -19,6 +19,8 @@ class Api::V1::CampgroundsController < ApplicationController
       @campground.contract_id = params[:contract_id]
       @campground.facility_id = params[:facility_id]
       @campground.facility_name = params[:facility_name]
+      @campground.city = params[:city]
+      @campground.state = params[:state]
     end
 
     if (@campground.save)
