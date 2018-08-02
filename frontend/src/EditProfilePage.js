@@ -44,7 +44,7 @@ class EditProfilePage extends React.Component {
             <input
               type="text"
               name="username"
-              placeholder={this.state.currentUser.username}
+              defaultValue={this.state.currentUser.username}
             />
           </Form.Field>
 
@@ -53,7 +53,7 @@ class EditProfilePage extends React.Component {
             <input
               type="text"
               name="first_name"
-              placeholder={this.state.currentUser.first_name}
+              defaultValue={this.state.currentUser.first_name}
             />
           </Form.Field>
 
@@ -62,7 +62,7 @@ class EditProfilePage extends React.Component {
             <input
               type="text"
               name="last_name"
-              placeholder={this.state.currentUser.last_name}
+              defaultValue={this.state.currentUser.last_name}
             />
           </Form.Field>
 

@@ -14,7 +14,7 @@ const NavBar = (props) => {
               <LogoutButton />
             </Menu>
           :
-            <Menu style={{background: "none", flex: 1, webkitTextStroke: "1px black", fontSize: "20pt"}}>
+            <Menu style={{background: "none", flex: 1, WebkitTextStroke: "1px black", fontSize: "20pt"}}>
               <Menu.Item style={{position: "fixed", left:'10%'}} as={NavLink} exact to="/register">Register</Menu.Item>
               <Menu.Item style={{position: "fixed", right:'10%'}} as={NavLink} exact to="/login">Login</Menu.Item>
             </Menu>

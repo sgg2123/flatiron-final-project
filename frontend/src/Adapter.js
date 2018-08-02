@@ -139,7 +139,6 @@ export default class Adapter {
  }
 
  static editUser(currentUser, username, first_name, last_name, password) {
-   console.log(currentUser.id)
    let token = localStorage.getItem('token')
 
    let config = {
