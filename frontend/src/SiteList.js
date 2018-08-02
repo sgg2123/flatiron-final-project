@@ -5,6 +5,7 @@ import Adapter from './Adapter.js';
 import { updateDetails } from './actions';
 import { updateSelectedSite } from './actions';
 import { withRouter } from 'react-router';
+import { clearDetails } from './actions';
 
 class SiteList extends React.Component {
   componentDidMount = () => {
@@ -12,9 +13,18 @@ class SiteList extends React.Component {
   }
 
   handleClick = (contractID, facilityID, facilityName) => {
+    this.props.clearDetails()
     this.props.updateSelectedSite(contractID, facilityID, facilityName)
-    Adapter.getDetails(contractID, facilityID).then((newState => this.props.updateDetails(newState)))
-    this.props.history.push("/details")
+    Adapter.getDetails(contractID, facilityID)
+    .then(newState => {
+      this.props.updateDetails(newState)
+      if (this.props.facility === '') {
+        alert('Details not available at this time, sorry!')
+        this.props.history.push('/results')
+      } else {
+        this.props.history.push("/details")
+      }
+    })
   }
 
   render() {
@@ -44,6 +54,7 @@ class SiteList extends React.Component {
 
 function mapStateToProps(state) {
   return {
+    facility: state.facility,
     searchTerm: state.searchTerm,
     siteList: state.siteList,
     contractID: state.contractID,
@@ -56,6 +67,7 @@ function mapDispatchToProps(dispatch) {
   return {
     updateDetails: (newState) => dispatch(updateDetails(newState)),
     updateSelectedSite: (contractID, facilityID, facilityName) => dispatch(updateSelectedSite(contractID, facilityID, facilityName)),
+    clearDetails: () => dispatch(clearDetails()),
   }
 }
 

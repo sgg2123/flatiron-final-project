@@ -51,6 +51,8 @@ export default function reducer(state = initialState, action) {
       return newState
     case "SET_USER":
       return newState
+    case "CLEAR_DETAILS":
+      return newState
     default:
       return state;
   }

@@ -9,20 +9,37 @@ export default class Adapter {
       .then(xml => convert.xml2json(xml, options))
       .then(jsonStr => JSON.parse(jsonStr))
       .then(obj => {
-        let newState = {
-          facility: obj['detailDescription']['_attributes']['facility'],
-          lat: parseFloat(obj['detailDescription']['_attributes']['latitude']),
-          lng: parseFloat(obj['detailDescription']['_attributes']['longitude']),
-          description: obj['detailDescription']['_attributes']['description'],
-          streetAddress: obj['detailDescription']['address']['_attributes']['streetAddress'],
-          city: obj['detailDescription']['address']['_attributes']['city'],
-          state: obj['detailDescription']['address']['_attributes']['state'],
-          zip: obj['detailDescription']['address']['_attributes']['zip'],
-          contact: obj['detailDescription']['contact'],
-          amenities: obj['detailDescription']['amenity'],
-          imgs: obj['detailDescription']['photo'],
+        if (obj['detailDescription']) {
+          let newState = {
+            facility: obj['detailDescription']['_attributes']['facility'],
+            lat: parseFloat(obj['detailDescription']['_attributes']['latitude']),
+            lng: parseFloat(obj['detailDescription']['_attributes']['longitude']),
+            description: obj['detailDescription']['_attributes']['description'],
+            streetAddress: obj['detailDescription']['address']['_attributes']['streetAddress'],
+            city: obj['detailDescription']['address']['_attributes']['city'],
+            state: obj['detailDescription']['address']['_attributes']['state'],
+            zip: obj['detailDescription']['address']['_attributes']['zip'],
+            contact: obj['detailDescription']['contact'],
+            amenities: obj['detailDescription']['amenity'],
+            imgs: obj['detailDescription']['photo'],
+          }
+          return newState;
+        } else {
+          let newState = {
+            facility: '',
+            lat: '',
+            lng: '',
+            description: '',
+            streetAddress: '',
+            city: '',
+            state: '',
+            zip: '',
+            contact: '',
+            amenities: '',
+            imgs: '',
+          }
+          return newState
         }
-        return newState;
       })
     )
   }

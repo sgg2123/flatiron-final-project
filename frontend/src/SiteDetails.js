@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Adapter from './Adapter.js';
 import { updateDetails } from './actions';
 import SiteMap from './SiteMap';
+import { clearDetails } from './actions';
 
 class SiteDetails extends React.Component {
   handleFavorite = () => {
@@ -31,7 +32,7 @@ class SiteDetails extends React.Component {
           null
         }
 
-        {this.props.imgs.length ?
+        {(this.props.imgs.length > 0) ?
           this.props.imgs.map(img => <img key={UUID()} src={`https://www.reserveamerica.com/${img['_attributes']['realUrl']}`}></img>)
           :
           null
@@ -53,7 +54,7 @@ class SiteDetails extends React.Component {
         <p>{this.props.state}</p>
         <p>{this.props.zip}</p>
 
-        {this.props.contact.length ?
+        {(this.props.contact.length > 0) ?
           (
           <Fragment>
             <p><strong>Contact: </strong></p>
@@ -64,7 +65,7 @@ class SiteDetails extends React.Component {
           null
         }
 
-        {this.props.amenities.length ?
+        {(this.props.amenities.length > 0) ?
           (
           <Fragment>
             <p><strong>Amenities: </strong></p>
@@ -115,6 +116,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     updateDetails: (details) => dispatch(updateDetails(details)),
+    clearDetails: () => dispatch(clearDetails()),
   }
 }
 

@@ -100,3 +100,22 @@ export function setUser(currentUser) {
     }
   }
 }
+
+export function clearDetails() {
+  return {
+    type: "CLEAR_DETAILS",
+    payload: {
+      facility: '',
+      lat: '',
+      lng: '',
+      description: '',
+      streetAddress: '',
+      city: '',
+      state: '',
+      zip: '',
+      contact: '',
+      amenities: '',
+      imgs: '',
+    }
+  }
+}
