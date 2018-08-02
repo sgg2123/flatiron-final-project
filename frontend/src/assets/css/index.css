@@ -36,16 +36,37 @@ body {
 
 .login *,
 .registration * {
-  font-size: 20px;
+  font-size: 16px;
   text-align: center;
 }
 
-div.login, div.registration {
+div.registration {
   margin-top: 10px;
+  position: absolute;
+  left: 20%;
+  right: 20%;
+  height: 400px;
+  top: 90px;
+  background-color: rgba(255, 255, 255, 0.5);
+  overflow: scroll;
+}
+
+div.login {
+  margin-top: 10px;
+  position: absolute;
+  left: 20%;
+  right: 20%;
+  height: 220px;
+  top: 90px;
+  background-color: rgba(255, 255, 255, 0.5);
+  overflow: scroll;
 }
 
 .login label {
   margin: 0 20px;
+  color: white;
+  font-size: 20px;
+  -webkit-text-stroke: 1.5px black;
 }
 
 .login input[type="submit"] {

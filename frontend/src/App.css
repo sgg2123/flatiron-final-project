@@ -33,7 +33,7 @@
 }
 
 .login-page {
-   background-image: url('./home_page.jpg');
+   background-image: url('https://cdn.vox-cdn.com/thumbor/-JoPdcgAuLTUsWiDZ62CX4wb33k=/0x0:5225x3479/1200x800/filters:focal(2195x1322:3031x2158)/cdn.vox-cdn.com/uploads/chorus_image/image/54137643/camping_tents.0.jpg');
    background-size: cover;
    background-repeat: no-repeat;
    position:fixed;
@@ -63,14 +63,17 @@
 }
 
 .logo {
- flex: 1;
- text-align: center;
- color: white;
- font-family: Impact, fantasy;
- font-size: 40pt;
- -webkit-text-stroke: 1px black;
- color: white;
- text-shadow:
+  width: 80%;
+  padding-top: 20px;
+  margin: 0 auto;
+  flex: 1;
+  text-align: center;
+  color: white;
+  font-family: Impact, fantasy;
+  font-size: 40pt;
+  -webkit-text-stroke: 1px black;
+  color: white;
+  text-shadow:
      3px 3px 0 #000,
    -1px -1px 0 #000,
     1px -1px 0 #000,
@@ -79,8 +82,8 @@
 }
 
 .search-bar {
- padding: 3px;
- width: 90px;
+  padding: 3px;
+  width: 90px;
 }
 
 .form-input input[type="submit"] {
@@ -123,7 +126,21 @@
  } */
 
  .site-list {
-   height: 200px;
+   position: absolute;
+   left: 5%;
+   right: 5%;
+   height: 860px;
+   top: 110px;
+   background-color: rgba(255, 255, 255, 0.5);
+   overflow: scroll;
+ }
+
+ .site-details {
+   position: absolute;
+   left: 5%;
+   right: 5%;
+   height: 860px;
+   top: 130px;
    background-color: rgba(255, 255, 255, 0.5);
    overflow: scroll;
  }
@@ -134,4 +151,15 @@
   left: 5%;
   top: 20%;
   font-size: 16pt;
+}
+
+.left-menu {
+  display: flex;
+  width: 10%;
+}
+
+.logout-button {
+  margin-left: auto;
+  margin-right: 0;
+  width: 10%;
 }

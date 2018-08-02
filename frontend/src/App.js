@@ -21,7 +21,6 @@ class App extends Component {
           { Adapter.isLoggedIn() ?
               <Fragment>
                 <div className='logged-in'>
-                  <Route path="/" component={(props) => <Logo {...props} />} />
                   <Route path="/" component={NavBar} />
                   <Route exact path="/" component={Welcome} />
                   <Route exact path="/" component={(props) => <SearchBar {...props} />} />
@@ -34,8 +33,7 @@ class App extends Component {
             :
               <Fragment>
                 <div className='login-page'>
-                  <Route path="/" component={(props) => <Logo {...props} />} />
-                  <Route exact path="/" component={NavBar} />
+                  <Route path="/" component={NavBar} />
                   <Route exact path="/register" component={(props) => <RegistrationForm {...props} />} />
                   <Route exact path="/login" component={(props) => <LoginForm {...props} />} />
                 </div>

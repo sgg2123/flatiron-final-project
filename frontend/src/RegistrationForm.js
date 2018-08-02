@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Form, Button } from 'semantic-ui-react'
 
 class RegistrationForm extends Component {
   state = {
@@ -40,41 +41,54 @@ class RegistrationForm extends Component {
   render() {
     return (
       <div className="registration">
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="username">Username</label>
-          <input
-            type="text"
-            name="username"
-            placeholder="Username"
-            onChange={this.handleChange}
-            value={this.state.username}
-          />
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            onChange={this.handleChange}
-            value={this.state.password}
-          />
-        <label htmlFor="first_name">First Name</label>
-          <input
-            type="text"
-            name="first_name"
-            placeholder="First Name"
-            onChange={this.handleChange}
-            value={this.state.first_name}
-          />
-        <label htmlFor="last_name">Last Name</label>
-          <input
-            type="text"
-            name="last_name"
-            placeholder="Last Name"
-            onChange={this.handleChange}
-            value={this.state.last_name}
-          />
-          <input type="submit" value="Register" />
-        </form>
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Field>
+            <label htmlFor="username">Username</label>
+            <input
+              type="text"
+              name="username"
+              placeholder="Username"
+              onChange={this.handleChange}
+              value={this.state.username}
+            />
+          </Form.Field>
+
+          <Form.Field>
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              onChange={this.handleChange}
+              value={this.state.password}
+            />
+          </Form.Field>
+
+          <Form.Field>
+            <label htmlFor="first_name">First Name</label>
+            <input
+              type="text"
+              name="first_name"
+              placeholder="First Name"
+              onChange={this.handleChange}
+              value={this.state.first_name}
+            />
+          </Form.Field>
+          <Form.Field>
+            <label htmlFor="last_name">Last Name</label>
+            <input
+              type="text"
+              name="last_name"
+              placeholder="Last Name"
+              onChange={this.handleChange}
+              value={this.state.last_name}
+            />
+          </Form.Field>
+
+          <Form.Field>
+            <Button type="submit">Register</Button>
+          </Form.Field>
+        </Form>
       </div>
     )
   }

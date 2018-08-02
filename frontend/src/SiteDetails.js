@@ -18,7 +18,7 @@ class SiteDetails extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className='site-details'>
         <h1> {this.props.facility} </h1>
         {
           this.props.description ?
@@ -58,7 +58,16 @@ class SiteDetails extends React.Component {
           (
           <Fragment>
             <p><strong>Contact: </strong></p>
-            <ul>{this.props.contact.map(contact => <li key={UUID()}>{contact['_attributes']['name']}: {contact['_attributes']['number']}</li>)}</ul>
+            <ul>{this.props.contact.map(contact => {
+                console.log(contact['_attributes']['number'])
+                let number;
+                if (contact['_attributes']['number'].trim() === "") {
+                  number = "N/A"
+                } else {
+                  number = contact['_attributes']['number']
+                }
+                return <li key={UUID()}>{contact['_attributes']['name']}: {number}</li>
+            })}</ul>
           </Fragment>
           )
           :
