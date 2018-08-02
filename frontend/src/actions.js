@@ -91,3 +91,12 @@ export function endTour() {
     }
   }
 }
+
+export function setUser(currentUser) {
+  return {
+    type: "SET_USER",
+    payload: {
+      currentUser
+    }
+  }
+}

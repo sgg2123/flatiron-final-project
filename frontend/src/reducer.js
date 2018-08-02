@@ -23,6 +23,7 @@ const initialState = {
   facilityID: 'hello',
   facilityName: 'hello',
   touring3D: false,
+  currentUser: {},
 };
 
 export default function reducer(state = initialState, action) {
@@ -47,6 +48,8 @@ export default function reducer(state = initialState, action) {
     case "TAKE_TOUR":
       return newState
     case "END_TOUR":
+      return newState
+    case "SET_USER":
       return newState
     default:
       return state;

@@ -6,6 +6,7 @@ import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { updateDetails } from './actions';
 import { updateSelectedSite } from './actions';
+import { setUser } from './actions';
 
 
 class ProfilePage extends React.Component {
@@ -13,7 +14,6 @@ class ProfilePage extends React.Component {
     super();
 
     this.state = {
-      currentUser: {},
       interests: [],
     }
   }
@@ -21,7 +21,7 @@ class ProfilePage extends React.Component {
   componentDidMount = () => {
     Adapter.getUser()
     .then(user => {
-      this.setState({ currentUser: user })
+      this.props.setUser(user)
       Adapter.getInterests(user.id)
       .then(interests => {
         this.setState({ interests })
@@ -47,8 +47,8 @@ class ProfilePage extends React.Component {
   render() {
     return (
       <div className='profile-page'>
-        <h1>{this.state.currentUser['first_name']} {this.state.currentUser['last_name']}</h1>
-        <p>Username: {this.state.currentUser['username']}</p>
+        <h1>{this.props.currentUser['first_name']} {this.props.currentUser['last_name']}</h1>
+        <p>Username: {this.props.currentUser['username']}</p>
         <p>Your Interests:</p>
         {(this.state.interests.length > 0) ?
           this.state.interests.map(interest => {
@@ -68,7 +68,7 @@ class ProfilePage extends React.Component {
             )
           })
           :
-          <SearchBar />
+          null
         }
           <button className='ui primary button' role='button' onClick={this.handleEditUser}>
             Edit Profile
@@ -90,6 +90,7 @@ function mapStateToProps(state) {
     siteList: state.siteList,
     contractID: state.contractID,
     facilityID: state.facilityID,
+    currentUser: state.currentUser,
   }
 }
 
@@ -97,6 +98,7 @@ function mapDispatchToProps(dispatch) {
   return {
     updateDetails: (newState) => dispatch(updateDetails(newState)),
     updateSelectedSite: (contractID, facilityID, facilityName) => dispatch(updateSelectedSite(contractID, facilityID, facilityName)),
+    setUser: (currentUser) => dispatch(setUser(currentUser)),
   }
 }
 

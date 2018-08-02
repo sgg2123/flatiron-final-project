@@ -31,7 +31,7 @@ class EditProfilePage extends React.Component {
     const password = event.target.password.value
 
     Adapter.editUser(this.state.currentUser, username, firstName, lastName, password)
-    this.props.history.push('/profile')
+    .then(this.props.history.push('/profile'))
   }
 
 // <button onClick={() => this.handleEditUser(this.state.currentUser)}>edit</button>
