@@ -9,8 +9,8 @@ const NavBar = (props) => {
     <header className="nav">
         { Adapter.isLoggedIn() ?
             <Menu style={{background: "none", flex: 1, WebkitTextStroke: "1px black", fontSize: "20pt"}}>
-              <Menu.Item  as={NavLink} exact to="/">HOME</Menu.Item>
-              <Menu.Item  as={NavLink} exact to="/profile">PROFILE</Menu.Item>
+              <Menu.Item  as={NavLink} exact to="/">Home</Menu.Item>
+              <Menu.Item  as={NavLink} exact to="/profile">Profile</Menu.Item>
               <LogoutButton />
             </Menu>
           :

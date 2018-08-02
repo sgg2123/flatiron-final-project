@@ -20,14 +20,16 @@ class App extends Component {
       <div className="App">
           { Adapter.isLoggedIn() ?
               <Fragment>
-                <Route path="/" component={(props) => <Logo {...props} />} />
-                <Route path="/" component={NavBar} />
-                <Route exact path="/" component={Welcome} />
-                <Route exact path="/" component={(props) => <SearchBar {...props} />} />
-                <Route exact path="/results" component={SiteList} />
-                <Route exact path="/details" component={SiteDetails} />
-                <Route exact path="/profile" component={ProfilePage} />
-                <Route exact path="/profile/edit" component={EditProfilePage} />
+                <div className='logged-in'>
+                  <Route path="/" component={(props) => <Logo {...props} />} />
+                  <Route path="/" component={NavBar} />
+                  <Route exact path="/" component={Welcome} />
+                  <Route exact path="/" component={(props) => <SearchBar {...props} />} />
+                  <Route exact path="/results" component={SiteList} />
+                  <Route exact path="/details" component={SiteDetails} />
+                  <Route exact path="/profile" component={ProfilePage} />
+                  <Route exact path="/profile/edit" component={EditProfilePage} />
+                </div>
               </Fragment>
             :
               <Fragment>

@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { updateDetails } from './actions';
 // import { updateSelectedSite } from './actions';
 import { setUser } from './actions';
-
+let count = 0
 
 class ProfilePage extends React.Component {
   constructor() {
@@ -19,7 +19,6 @@ class ProfilePage extends React.Component {
   }
 
   componentDidMount = () => {
-    console.log('mount')
     Adapter.getUser()
     .then(user => {
       this.props.setUser(user)
@@ -31,15 +30,17 @@ class ProfilePage extends React.Component {
   }
 
   componentWillReceiveProps = () => {
-    console.log('props')
-    Adapter.getUser()
-    .then(user => {
-      this.props.setUser(user)
-      Adapter.getInterests(user.id)
-      .then(interests => {
-        this.setState({ interests })
+    if (count < 1) {
+      Adapter.getUser()
+      .then(user => {
+        this.props.setUser(user)
+        Adapter.getInterests(user.id)
+        .then(interests => {
+          this.setState({ interests })
+        })
       })
-    })
+      count += 1
+    }
   }
 
   handleClick = (interestID, contractID, facilityID) => {
@@ -57,7 +58,6 @@ class ProfilePage extends React.Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <div className='profile-page'>
         <h1>{this.props.currentUser['first_name']} {this.props.currentUser['last_name']}</h1>
