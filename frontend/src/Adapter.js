@@ -45,7 +45,6 @@ export default class Adapter {
   }
 
   static getCampgrounds(lat, lng, filters) {
-    console.log(filters)
     const options = {compact: true, ignoreComment: true, spaces: 4};
     let URL = `https://cors-anywhere.herokuapp.com/http://api.amp.active.com/camping/campgrounds/?landmarkLat=${lat}&landmarkLong=${lng}&landmarkName=true&api_key=hmn6tzctjc74t3268nr7t4uh`
     if (filters.sewer) {
@@ -122,13 +121,8 @@ export default class Adapter {
  }
 
  static addToFavorites(contract_id, facility_id, facility_name, user, city, state) {
-   console.log(contract_id, facility_id, facility_name, city, state)
-   console.log(user)
-
    let user_id = user.id
-
    let token = localStorage.getItem('token')
-
    let config = {
    	method: 'POST',
     headers: {
@@ -141,7 +135,6 @@ export default class Adapter {
    .then(r => r.json())
    .then(json => {
      const campground_id= json['campground_id']
-
      let config = {
      	method: 'POST',
       headers: {
@@ -157,7 +150,6 @@ export default class Adapter {
 
  static editUser(currentUser, username, first_name, last_name, password) {
    let token = localStorage.getItem('token')
-
    let config = {
    	method: 'PATCH',
     headers: {

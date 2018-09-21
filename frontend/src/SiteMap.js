@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { changeLocation } from './actions.js';
 import { toggle3D } from './actions.js';
 import { takeTour } from './actions.js';
+// import { endTour } from './actions.js';
+import { Button } from 'semantic-ui-react';
 
 
 class SiteMap extends React.Component {
@@ -32,7 +34,8 @@ class SiteMap extends React.Component {
        var marker = eeGeo.marker([this.props.lat, this.props.lng], { title: "My marker" }).addTo(map);
        const lat = this.props.lat
        const lng = this.props.lng
-       map.setView([lat, lng], 13, {headingDegrees:270, animated:true, durationSeconds:5});
+       map.setView([lat, lng], 13, {headingDegrees:720, animated:true, durationSeconds:12});
+       // setTimeout(this.props.endTour, 10000)
        // setTimeout(function() { map.setView([lat, lng], 13, {headingDegrees:270, animated:true, durationSeconds:5}); }, 4000);
       } else {
         const map = eeGeo.map('map', 'c3d75ab06945250a4c588425ce33a8f2', {
@@ -59,6 +62,8 @@ class SiteMap extends React.Component {
     console.log(this.props.touring3D)
   }
 
+// <button id='change-location-button' onClick={this.props.changeLocation}>Change Location</button>
+
   render() {
     console.log(this.props)
     return (
@@ -66,9 +71,8 @@ class SiteMap extends React.Component {
         <div id="map-container">
           <div id="map"></div>
         </div>
-        <button id='toggle-button' onClick={() => this.props.toggle3D(this.props.toggled3D)}>Toggle 3D</button>
-        <button id='3D-tour' onClick={this.tour3D}>3D Tour</button>
-        <button id='change-location-button' onClick={this.props.changeLocation}>Change Location</button>
+        <Button id='3D-tour' onClick={this.tour3D}>3D Tour</Button>
+        <Button id='toggle-button' onClick={() => this.props.toggle3D(this.props.toggled3D)}>2D Map</Button>
       </div>
     );
   }
@@ -88,6 +92,7 @@ function mapDispatchToProps(dispatch) {
     changeLocation: () => dispatch(changeLocation()),
     toggle3D: (bool) => dispatch(toggle3D(bool)),
     takeTour: () => dispatch(takeTour()),
+    // endTour: () => dispatch(endTour()),
   }
 }
 

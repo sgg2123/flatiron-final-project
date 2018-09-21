@@ -6,6 +6,7 @@ import Adapter from './Adapter.js';
 import { updateDetails } from './actions';
 import SiteMap from './SiteMap';
 import { clearDetails } from './actions';
+import { Button } from 'semantic-ui-react';
 
 class SiteDetails extends React.Component {
   handleFavorite = () => {
@@ -90,7 +91,7 @@ class SiteDetails extends React.Component {
           (
             <Fragment>
               <SiteMap />
-              <button onClick={this.handleFavorite}>💚</button>
+              <Button onClick={this.handleFavorite}>💚</Button>
             </Fragment>
           )
           :

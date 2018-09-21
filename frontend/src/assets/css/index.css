@@ -64,9 +64,6 @@ div.login {
 
 .login label {
   margin: 0 20px;
-  color: white;
-  font-size: 20px;
-  -webkit-text-stroke: 1.5px black;
 }
 
 .login input[type="submit"] {
