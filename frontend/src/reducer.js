@@ -24,6 +24,7 @@ const initialState = {
   facilityName: 'hello',
   touring3D: false,
   currentUser: {},
+  interests: [],
 };
 
 export default function reducer(state = initialState, action) {
@@ -50,6 +51,8 @@ export default function reducer(state = initialState, action) {
     case "END_TOUR":
       return newState
     case "SET_USER":
+      return newState
+    case "SET_INTERESTS":
       return newState
     case "CLEAR_DETAILS":
       return newState

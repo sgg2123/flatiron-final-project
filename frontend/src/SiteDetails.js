@@ -11,55 +11,58 @@ import { Button } from 'semantic-ui-react';
 class SiteDetails extends React.Component {
   handleFavorite = () => {
     console.log(this.props);
+    const json = JSON.parse(localStorage.getItem('state'));
     Adapter.getUser().then(user => {
-      Adapter.addToFavorites(this.props.contractID, this.props.facilityID, this.props.facilityName, user, this.props.city, this.props.state)
+      Adapter.addToFavorites(json.contractID, json.facilityID, json.facilityName, user, json.city, json.state)
       .then(json => alert(json.message))
     })
   }
 
   render() {
+    const json = JSON.parse(localStorage.getItem('state'));
+
     return (
       <div className='site-details'>
-        <h1> {this.props.facility} </h1>
+        <h1> {json.facility} </h1>
         {
-          this.props.description ?
+          json.description ?
           (
           <Fragment>
             <p><strong>Description: </strong></p>
-            <p>{this.props.description}</p>
+            <p>{json.description}</p>
           </Fragment>
           )
           :
           null
         }
 
-        {(this.props.imgs.length > 0) ?
-          this.props.imgs.map(img => <img key={UUID()} src={`https://www.reserveamerica.com/${img['_attributes']['realUrl']}`}></img>)
+        {(json.imgs.length > 0) ?
+          json.imgs.map(img => <img key={UUID()} src={`https://www.reserveamerica.com/${img['_attributes']['realUrl']}`}></img>)
           :
           null
         }
 
         {
-          this.props.streetAddress ?
+          json.streetAddress ?
           (
           <Fragment>
             <p><strong>Address: </strong></p>
-            <p>{this.props.streetAddress}</p>
+            <p>{json.streetAddress}</p>
           </Fragment>
           )
           :
           null
         }
 
-        <p>{this.props.city}</p>
-        <p>{this.props.state}</p>
-        <p>{this.props.zip}</p>
+        <p>{json.city}</p>
+        <p>{json.state}</p>
+        <p>{json.zip}</p>
 
-        {(this.props.contact.length > 0) ?
+        {(json.contact.length > 0) ?
           (
           <Fragment>
             <p><strong>Contact: </strong></p>
-            <ul>{this.props.contact.map(contact => {
+            <ul>{json.contact.map(contact => {
                 console.log(contact['_attributes']['number'])
                 let number;
                 if (contact['_attributes']['number'].trim() === "") {
@@ -75,11 +78,11 @@ class SiteDetails extends React.Component {
           null
         }
 
-        {(this.props.amenities.length > 0) ?
+        {(json.amenities.length > 0) ?
           (
           <Fragment>
             <p><strong>Amenities: </strong></p>
-            <ul>{this.props.amenities.map(amenity => <li key={UUID()}>{amenity['_attributes']['name']}</li>)}</ul>
+            <ul>{json.amenities.map(amenity => <li key={UUID()}>{amenity['_attributes']['name']}</li>)}</ul>
           </Fragment>
           )
           :
@@ -87,7 +90,7 @@ class SiteDetails extends React.Component {
         }
 
         {
-          this.props.facility ?
+          json.facility ?
           (
             <Fragment>
               <SiteMap />

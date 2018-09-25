@@ -78,6 +78,7 @@ export default class Adapter {
   static logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('username');
+    localStorage.removeItem('state');
   }
 
   static login(username, password) {

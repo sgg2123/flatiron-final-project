@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import Adapter from './Adapter';
 import { Form, Button } from 'semantic-ui-react'
+import { setUser, setInterests } from './actions';
+import { withRouter } from 'react-router';
+import { connect } from 'react-redux';
 
 class LoginForm extends Component {
   state = {
@@ -23,7 +26,15 @@ class LoginForm extends Component {
         if (json.token) {
           localStorage.setItem('username', json.username);
           localStorage.setItem('token', json.token);
-          this.props.history.push("/");
+          Adapter.getUser()
+          .then(user => {
+            this.props.setUser(user);
+            Adapter.getInterests(user.id)
+            .then(interests => {
+              this.props.setInterests(interests);
+            })
+          })
+          .then(this.props.history.push("/"));
         } else {
           alert(json.errors)
         }
@@ -65,4 +76,11 @@ class LoginForm extends Component {
   }
 }
 
-export default LoginForm;
+function mapDispatchToProps(dispatch) {
+  return {
+    setUser: (currentUser) => dispatch(setUser(currentUser)),
+    setInterests: (interests) => dispatch(setInterests(interests)),
+  }
+}
+
+export default withRouter(connect(null, mapDispatchToProps)(LoginForm));

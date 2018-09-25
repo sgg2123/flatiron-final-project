@@ -10,38 +10,44 @@ import { setUser } from './actions';
 let count = 0
 
 class ProfilePage extends React.Component {
-  constructor() {
-    super();
+  // constructor() {
+  //   super();
+  //
+  //   this.state = {
+  //     interests: [],
+  //   }
+  // }
 
-    this.state = {
-      interests: [],
-    }
-  }
+  // componentDidMount = () => {
+  //   console.log('mount')
+  //   console.log(this.props.currentUser)
+  //   Adapter.getUser()
+  //   .then(user => {
+  //     console.log(user)
+  //     this.props.setUser(user)
+  //     Adapter.getInterests(user.id)
+  //     .then(interests => {
+  //       this.setState({ interests })
+  //     })
+  //   })
+  // }
 
-  componentDidMount = () => {
-    Adapter.getUser()
-    .then(user => {
-      this.props.setUser(user)
-      Adapter.getInterests(user.id)
-      .then(interests => {
-        this.setState({ interests })
-      })
-    })
-  }
-
-  componentWillReceiveProps = () => {
-    if (count < 1) {
-      Adapter.getUser()
-      .then(user => {
-        this.props.setUser(user)
-        Adapter.getInterests(user.id)
-        .then(interests => {
-          this.setState({ interests })
-        })
-      })
-      count += 1
-    }
-  }
+  // componentWillReceiveProps = () => {
+  //   console.log('props')
+  //
+  //   if (count < 1) {
+  //     Adapter.getUser()
+  //     .then(user => {
+  //       console.log(user)
+  //       this.props.setUser(user)
+  //       Adapter.getInterests(user.id)
+  //       .then(interests => {
+  //         this.setState({ interests })
+  //       })
+  //     })
+  //     count += 1
+  //   }
+  // }
 
   handleClick = (interestID, contractID, facilityID) => {
     Adapter.getCampgroundFromInterest(interestID)
@@ -58,13 +64,18 @@ class ProfilePage extends React.Component {
   }
 
   render() {
+    console.log(this.props.currentUser)
+    console.log(this.props)
+    const json = JSON.parse(localStorage.getItem('state'));
+    const currentUser = json.currentUser;
+    const interests = json.interests;
     return (
       <div className='profile-page'>
-        <h1>{this.props.currentUser['first_name']} {this.props.currentUser['last_name']}</h1>
-        <p>Username: {this.props.currentUser['username']}</p>
+        <h1>{currentUser['first_name']} {currentUser['last_name']}</h1>
+        <p>Username: {currentUser['username']}</p>
         <p>Your Interests:</p>
-        {(this.state.interests.length > 0) ?
-          this.state.interests.map(interest => {
+        {(interests.length > 0) ?
+          interests.map(interest => {
             const interestID = interest.id
             return (
               <div key={UUID()} onClick={()=>this.handleClick(interestID)} role='list' className='ui list'>

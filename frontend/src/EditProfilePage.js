@@ -2,6 +2,8 @@ import React from 'react';
 import Adapter from './Adapter'
 import { Form, Button } from 'semantic-ui-react'
 import { withRouter } from 'react-router';
+import { connect } from 'react-redux';
+import { setUser } from './actions';
 
 class EditProfilePage extends React.Component {
   constructor() {
@@ -9,7 +11,6 @@ class EditProfilePage extends React.Component {
 
     this.state = {
       currentUser: {},
-      interests: [],
     }
   }
 
@@ -29,12 +30,13 @@ class EditProfilePage extends React.Component {
     const firstName = event.target.first_name.value
     const lastName = event.target.last_name.value
     const password = event.target.password.value
+    const user = {id: this.state.currentUser.id, username, first_name: firstName, last_name: lastName}
 
     Adapter.editUser(this.state.currentUser, username, firstName, lastName, password)
+    .then(this.props.setUser(user))
     .then(this.props.history.push('/profile'))
   }
 
-// <button onClick={() => this.handleEditUser(this.state.currentUser)}>edit</button>
   render() {
     return (
       <div className="edit-profile">
@@ -85,4 +87,18 @@ class EditProfilePage extends React.Component {
   }
 }
 
-export default withRouter(EditProfilePage);
+// function mapStateToProps(state) {
+//   return {
+//     currentUser: state.currentUser,
+//   }
+// }
+
+
+function mapDispatchToProps(dispatch) {
+  return {
+    setUser: (currentUser) => dispatch(setUser(currentUser)),
+  }
+}
+
+
+export default withRouter(connect(null, mapDispatchToProps)(EditProfilePage));
