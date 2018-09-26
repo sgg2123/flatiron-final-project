@@ -12,6 +12,7 @@ import Adapter from './Adapter'
 import Logo from './Logo.js'
 import ProfilePage from './ProfilePage'
 import EditProfilePage from './EditProfilePage'
+import DeleteProfilePage from './DeleteProfilePage'
 
 // <Redirect to="/" />
 class App extends Component {
@@ -28,6 +29,7 @@ class App extends Component {
                   <Route exact path="/details" component={SiteDetails} />
                   <Route exact path="/profile" component={ProfilePage} />
                   <Route exact path="/profile/edit" component={EditProfilePage} />
+                  <Route exact path="/profile/delete" component={DeleteProfilePage} />
                 </div>
               </Fragment>
             :

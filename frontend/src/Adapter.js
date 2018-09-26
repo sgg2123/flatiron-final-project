@@ -169,4 +169,18 @@ export default class Adapter {
    .then(r => r.json())
  }
 
+ static deleteUser(currentUser) {
+   let token = localStorage.getItem('token')
+   let config = {
+   	method: 'DELETE',
+    headers: {
+   		"Authorization": token,
+   		"Content-Type": 'application/json',
+   	}
+   }
+   return fetch(`http://localhost:3000/api/v1/users/${currentUser.id}`, config)
+   .then(r => r.json())
+
+ }
+
 }

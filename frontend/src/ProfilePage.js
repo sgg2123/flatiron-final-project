@@ -63,6 +63,10 @@ class ProfilePage extends React.Component {
     this.props.history.push('/profile/edit');
   }
 
+  handleDeleteAccount = () => {
+    this.props.history.push('/profile/delete');
+  }
+
   render() {
     console.log(this.props.currentUser)
     console.log(this.props)
@@ -97,7 +101,7 @@ class ProfilePage extends React.Component {
           <button className='ui primary button' role='button' onClick={this.handleEditUser}>
             Edit Profile
           </button>
-          <button className='ui secondary button' role='button' onClick={this.handleClick}>
+          <button className='ui secondary button' role='button' onClick={this.handleDeleteAccount}>
             Delete Account
           </button>
 
