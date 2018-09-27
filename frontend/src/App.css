@@ -148,7 +148,8 @@
 .profile-page {
   font-family: Tahoma, Geneva, sans-serif;
   position: absolute;
-  left: 37%;
+  left: 35%;
+  right: 35%;
   top: 20%;
   font-size: 16pt;
   background-color: rgba(255, 255, 255, 0.5);
@@ -177,4 +178,28 @@
   color: #3F51B5;
   background-color: #fff;
   font-size: 16px;
+}
+
+.delete-profile-page {
+  font-family: Tahoma, Geneva, sans-serif;
+  position: absolute;
+  left: 40%;
+  right: 40%;
+  top: 20%;
+  font-size: 16pt;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 50px;
+  text-align: center;
+}
+
+.edit-profile-page {
+  font-family: Tahoma, Geneva, sans-serif;
+  position: absolute;
+  left: 40%;
+  right: 40%;
+  top: 20%;
+  font-size: 16pt;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 50px;
+  text-align: center;
 }

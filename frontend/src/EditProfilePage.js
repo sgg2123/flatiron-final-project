@@ -39,7 +39,7 @@ class EditProfilePage extends React.Component {
 
   render() {
     return (
-      <div className="edit-profile">
+      <div className="edit-profile-page">
         <Form onSubmit={(event)=>this.handleSubmit(event)}>
           <Form.Field>
             <label htmlFor="username">Username</label>

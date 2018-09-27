@@ -31,7 +31,7 @@ class DeleteProfilePage extends React.Component {
 
   render() {
     return (
-      <div className="delete-profile">
+      <div className="delete-profile-page">
         <h1>Are you sure?</h1>
         <Button onClick={this.handleCancel}>Cancel</Button>
         <Button onClick={this.handleDelete}>Delete Account</Button>
