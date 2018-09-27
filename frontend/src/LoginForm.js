@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Adapter from './Adapter';
 import { Form, Button } from 'semantic-ui-react'
-import { setUser, setInterests } from './actions';
+import { setUser } from './actions';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 
@@ -24,15 +24,11 @@ class LoginForm extends Component {
       .then(res => res.json())
       .then(json => {
         if (json.token) {
-          localStorage.setItem('username', json.username);
+          localStorage.setItem('id', json.id);
           localStorage.setItem('token', json.token);
           Adapter.getUser()
           .then(user => {
             this.props.setUser(user);
-            Adapter.getInterests(user.id)
-            .then(interests => {
-              this.props.setInterests(interests);
-            })
           })
           .then(this.props.history.push("/"));
         } else {
@@ -79,7 +75,6 @@ class LoginForm extends Component {
 function mapDispatchToProps(dispatch) {
   return {
     setUser: (currentUser) => dispatch(setUser(currentUser)),
-    setInterests: (interests) => dispatch(setInterests(interests)),
   }
 }
 

@@ -101,15 +101,6 @@ export function setUser(currentUser) {
   }
 }
 
-export function setInterests(interests) {
-  return {
-    type: "SET_INTERESTS",
-    payload: {
-      interests
-    }
-  }
-}
-
 export function clearDetails() {
   return {
     type: "CLEAR_DETAILS",

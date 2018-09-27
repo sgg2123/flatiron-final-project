@@ -3,19 +3,16 @@ import React, { Fragment } from 'react';
 import UUID from 'uuid';
 import { connect } from 'react-redux';
 import Adapter from './Adapter.js';
-import { updateDetails } from './actions';
 import SiteMap from './SiteMap';
-import { clearDetails } from './actions';
+// import { clearDetails, updateDetails } from './actions';
 import { Button } from 'semantic-ui-react';
 
 class SiteDetails extends React.Component {
   handleFavorite = () => {
-    console.log(this.props);
     const json = JSON.parse(localStorage.getItem('state'));
-    Adapter.getUser().then(user => {
-      Adapter.addToFavorites(json.contractID, json.facilityID, json.facilityName, user, json.city, json.state)
-      .then(json => alert(json.message))
-    })
+    const user = json.currentUser
+    Adapter.addToFavorites(json.contractID, json.facilityID, json.facilityName, user, json.city, json.state)
+    .then(jsonResponse => alert(jsonResponse.message))
   }
 
   render() {
@@ -126,11 +123,11 @@ function mapStateToProps(state) {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    updateDetails: (details) => dispatch(updateDetails(details)),
-    clearDetails: () => dispatch(clearDetails()),
-  }
-}
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     updateDetails: (details) => dispatch(updateDetails(details)),
+//     clearDetails: () => dispatch(clearDetails()),
+//   }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SiteDetails);
+export default connect(mapStateToProps, null)(SiteDetails);

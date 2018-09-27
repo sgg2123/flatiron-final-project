@@ -18,7 +18,6 @@ const store = createStore(
 store.subscribe(() => {
   saveState({
     currentUser: store.getState().currentUser,
-    interests: store.getState().interests,
     facility: store.getState().facility,
     description: store.getState().description,
     imgs: store.getState().imgs,
@@ -30,6 +29,11 @@ store.subscribe(() => {
     amenities: store.getState().amenities,
     lat: store.getState().lat,
     lng: store.getState().lng,
+    contractID: store.getState().contractID,
+    facilityID: store.getState().facilityID,
+    facilityName: store.getState().facilityName,
+    city: store.getState().city,
+    state: store.getState().state,
   });
 });
 

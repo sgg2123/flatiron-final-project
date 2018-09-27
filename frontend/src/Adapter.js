@@ -77,7 +77,7 @@ export default class Adapter {
 
   static logout() {
     localStorage.removeItem('token');
-    localStorage.removeItem('username');
+    localStorage.removeItem('id');
     localStorage.removeItem('state');
   }
 
@@ -103,8 +103,8 @@ export default class Adapter {
    return fetch('http://localhost:3000/api/v1/users', config)
    .then(r => r.json())
    .then(users => {
-     const currentUsername = localStorage.getItem('username')
-     return users.find(user => user.username === currentUsername)
+     const id = localStorage.getItem('id')
+     return users.find(user => user.id == id)
    })
  }
 
