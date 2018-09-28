@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
+import Adapter from './Adapter';
 import { Form, Button } from 'semantic-ui-react'
+import { setUser } from './actions';
+import { withRouter } from 'react-router';
+import { connect } from 'react-redux';
 
 class RegistrationForm extends Component {
   state = {
@@ -30,6 +34,10 @@ class RegistrationForm extends Component {
         if (json.token) {
           localStorage.setItem('id', json.id);
           localStorage.setItem('token', json.token);
+          Adapter.getUser()
+          .then(user => {
+            this.props.setUser(user);
+          })
           this.props.history.push("/");
         } else {
           alert(json.errors)
@@ -94,4 +102,10 @@ class RegistrationForm extends Component {
   }
 }
 
-export default RegistrationForm;
+function mapDispatchToProps(dispatch) {
+  return {
+    setUser: (currentUser) => dispatch(setUser(currentUser)),
+  }
+}
+
+export default withRouter(connect(null, mapDispatchToProps)(RegistrationForm));
