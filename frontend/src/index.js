@@ -34,6 +34,7 @@ store.subscribe(() => {
     facilityName: store.getState().facilityName,
     city: store.getState().city,
     state: store.getState().state,
+    searchTerm: store.getState().searchTerm,
   });
 });
 
