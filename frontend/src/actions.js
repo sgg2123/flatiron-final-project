@@ -119,3 +119,12 @@ export function clearDetails() {
     }
   }
 }
+
+export function clearSearchTerm() {
+  return {
+    type: "CLEAR_SEARCH_TERM",
+    payload: {
+      searchTerm: ""
+    }
+  }
+}

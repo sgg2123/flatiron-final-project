@@ -5,6 +5,7 @@ import { handleSearchChange } from './actions';
 import { updateSiteList } from './actions';
 import { submitForm } from './actions';
 import SiteList from './SiteList.js'
+import { clearSearchTerm } from './actions';
 
 class SearchBar extends React.Component {
   handleInputChange = (event) => {
@@ -39,6 +40,7 @@ class SearchBar extends React.Component {
         .then(array => {
           this.props.updateSiteList(array)
           this.props.submitForm()
+          this.props.clearSearchTerm()
           this.props.history.push("/results")
         })
       })
@@ -134,6 +136,7 @@ function mapDispatchToProps(dispatch) {
     handleSearchChange: (event) => dispatch(handleSearchChange(event)),
     updateSiteList: (array) => dispatch(updateSiteList(array)),
     submitForm: () => dispatch(submitForm()),
+    clearSearchTerm: () => dispatch(clearSearchTerm()),
   }
 }
 

@@ -56,6 +56,8 @@ export default function reducer(state = initialState, action) {
       return newState
     case "CLEAR_DETAILS":
       return newState
+    case "CLEAR_SEARCH_TERM":
+      return newState
     default:
       return state;
   }
