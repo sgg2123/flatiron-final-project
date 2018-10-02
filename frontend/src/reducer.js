@@ -18,7 +18,6 @@ const initialState = {
   pets: false,
   waterfront: false,
   siteList: [],
-  formSubmitted: false,
   contractID: 'hello',
   facilityID: 'hello',
   facilityName: 'hello',
@@ -40,10 +39,6 @@ export default function reducer(state = initialState, action) {
       return newState;
     case "UPDATE_SITE_LIST":
       return newState;
-    case "SUBMIT_FORM":
-      return newState
-    case "CLEAR_RESULTS":
-      return newState
     case "UPDATE_SELECTED_SITE":
       return newState
     case "TAKE_TOUR":

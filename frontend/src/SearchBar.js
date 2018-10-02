@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import Adapter from './Adapter.js';
 import { handleSearchChange } from './actions';
 import { updateSiteList } from './actions';
-import { submitForm } from './actions';
-import SiteList from './SiteList.js'
 import { clearSearchTerm } from './actions';
 
 class SearchBar extends React.Component {
@@ -39,7 +37,6 @@ class SearchBar extends React.Component {
         Adapter.getCampgrounds(lat, lng, filters)
         .then(array => {
           this.props.updateSiteList(array)
-          this.props.submitForm()
           this.props.clearSearchTerm()
           this.props.history.push("/results")
         })
@@ -107,12 +104,6 @@ class SearchBar extends React.Component {
           </label>
         </form>
 
-        { this.props.formSubmitted ?
-          <SiteList />
-        :
-          null
-        }
-
       </div>
     )
   }
@@ -126,8 +117,6 @@ function mapStateToProps(state) {
     pull: state.pull,
     pets: state.pets,
     waterfront: state.waterfront,
-    siteList: state.siteList,
-    formSubmitted: state.formSubmitted,
   }
 }
 
@@ -135,7 +124,6 @@ function mapDispatchToProps(dispatch) {
   return {
     handleSearchChange: (event) => dispatch(handleSearchChange(event)),
     updateSiteList: (array) => dispatch(updateSiteList(array)),
-    submitForm: () => dispatch(submitForm()),
     clearSearchTerm: () => dispatch(clearSearchTerm()),
   }
 }

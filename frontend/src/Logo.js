@@ -1,11 +1,7 @@
 import React from 'react';
-import { clearResults } from './actions';
-import { connect } from 'react-redux';
-
 
 class Logo extends React.Component {
   handleClick = () => {
-    this.props.clearResults(this.props.formSubmitted)
     this.props.history.push("/")
   }
 
@@ -18,16 +14,4 @@ class Logo extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    formSubmitted: state.formSubmitted,
-  }
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    clearResults: () => dispatch(clearResults()),
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Logo);
+export default Logo;
