@@ -1,20 +1,18 @@
 import React, { Component, Fragment } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import Adapter from './Adapter';
+import { Route } from 'react-router-dom';
 import NavBar from './NavBar';
-import './App.css';
-import SiteDetails from './SiteDetails.js'
-import SearchBar from './SearchBar.js'
-import SiteList from './SiteList.js'
-import Welcome from './Welcome.js'
+import Welcome from './Welcome';
+import SearchBar from './SearchBar';
+import SiteList from './SiteList';
+import SiteDetails from './SiteDetails';
+import ProfilePage from './ProfilePage';
+import EditProfilePage from './EditProfilePage';
+import DeleteProfilePage from './DeleteProfilePage';
 import RegistrationForm from './RegistrationForm';
 import LoginForm from './LoginForm';
-import Adapter from './Adapter'
-import Logo from './Logo.js'
-import ProfilePage from './ProfilePage'
-import EditProfilePage from './EditProfilePage'
-import DeleteProfilePage from './DeleteProfilePage'
+import './App.css';
 
-// <Redirect to="/" />
 class App extends Component {
   render() {
     return (
@@ -42,7 +40,6 @@ class App extends Component {
               </Fragment>
           }
         </div>
-
     );
   }
 }

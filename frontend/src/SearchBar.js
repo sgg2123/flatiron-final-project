@@ -6,16 +6,6 @@ import { updateSiteList } from './actions';
 import { clearSearchTerm } from './actions';
 
 class SearchBar extends React.Component {
-  handleInputChange = (event) => {
-    // const target = event.target;
-    // const value = target.type === 'checkbox' ? target.checked : target.value;
-    // const name = target.name;
-    //
-    // this.setState({
-    //   [name]: value
-    // }, () => console.log(this.state));
-  }
-
   handleSubmit = (event) => {
     event.preventDefault();
     const json = JSON.parse(localStorage.getItem('state'));
@@ -42,13 +32,11 @@ class SearchBar extends React.Component {
         })
       })
     }
-
   }
 
   render() {
     return (
       <div id='search-bar'>
-
         <form className='form-input' onSubmit={this.handleSubmit}>
           <input
             name='searchTerm'
@@ -61,7 +49,6 @@ class SearchBar extends React.Component {
             type='submit'
             value='Find campgrounds!'
           />
-
           <label>
             Sewer Hookup:
             <input
@@ -103,9 +90,8 @@ class SearchBar extends React.Component {
               onChange={this.props.handleSearchChange} />
           </label>
         </form>
-
       </div>
-    )
+    );
   }
 }
 
