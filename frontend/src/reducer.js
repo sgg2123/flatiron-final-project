@@ -29,8 +29,6 @@ const initialState = {
 export default function reducer(state = initialState, action) {
   let newState = {...state, ...action.payload};
   switch(action.type) {
-    case "CHANGE_LOC":
-      return newState;
     case "TOGGLE_3D":
       return newState;
     case "UPDATE_DETAILS":

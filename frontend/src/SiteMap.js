@@ -2,9 +2,7 @@ import React from 'react';
 import * as eeGeo from 'eegeo.js';
 import L from 'leaflet'
 import { connect } from 'react-redux';
-import { changeLocation } from './actions.js';
-import { toggle3D } from './actions.js';
-import { takeTour } from './actions.js';
+import { toggle3D, takeTour } from './actions';
 // import { endTour } from './actions.js';
 import { Button } from 'semantic-ui-react';
 
@@ -65,8 +63,6 @@ class SiteMap extends React.Component {
     console.log(this.props.touring3D)
   }
 
-// <button id='change-location-button' onClick={this.props.changeLocation}>Change Location</button>
-
   render() {
     console.log(this.props)
     return (
@@ -92,7 +88,6 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    changeLocation: () => dispatch(changeLocation()),
     toggle3D: (bool) => dispatch(toggle3D(bool)),
     takeTour: () => dispatch(takeTour()),
     // endTour: () => dispatch(endTour()),

@@ -1,13 +1,3 @@
-export function changeLocation() {
-  return {
-    type: "CHANGE_LOC",
-    payload: {
-      lat: 40.705489,
-      lng: -74.014081,
-    }
-  }
-}
-
 export function toggle3D(bool) {
   return {
     type: "TOGGLE_3D",
