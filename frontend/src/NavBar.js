@@ -23,7 +23,7 @@ const NavBar = (props) => {
             <Menu style={{background: "rgba(255, 255, 255, 0.5)", flex: 1, WebkitTextStroke: "1px black", fontSize: "20pt"}}>
               <Menu.Item style={{color: "white", fontWeight: "bold", WebkitTextStroke: "1px black"}} as={NavLink} exact to="/register">Register</Menu.Item>
               <Route path="/" component={(props) => <Logo {...props} />} />
-              <Menu.Item style={{color: "white", fontWeight: "bold", WebkitTextStroke: "1px black"}} as={NavLink} exact to="/login">Login</Menu.Item>
+              <Menu.Item style={{color: "white", fontWeight: "bold", WebkitTextStroke: "1px black"}} as={NavLink} exact to="/login">Log In</Menu.Item>
             </Menu>
         }
     </header>

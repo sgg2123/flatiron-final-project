@@ -16,8 +16,8 @@ This web application enables users to find US campgrounds based on amenity filte
 10. Navigate to [http://localhost:3001/](http://localhost:3001/)
 11. Click 'Register' if it is your first time using the app and enter your information. Click 'Log In' if you are a returning user.
 12. Enter an address, city, state, or zip into the search bar and apply your desired filters by checking the boxes to start a campground search.
-13. Browse thorugh the results on the map and click a campground from the list to view details.
+13. Browse through the results on the map and click a campground from the list to view details.
 14. On the details page you can view site details, take a 3D map tour, see activities on site, and save the campground to your favorites by clicking the green heart, if desired.
-15. Click 'My Profile' to view and revisit your saved campgrounds. 
+15. Click 'Profile' to view and revisit your saved campgrounds.
 16. From your profile page you can also edit your profile or delete your account. To edit your information, click 'Edit Profile', make your desired changes, type in your password, then click 'Update Profile'.
 17. Enjoy browsing. When you are done, click 'Log Out'.

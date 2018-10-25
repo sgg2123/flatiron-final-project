@@ -13,7 +13,7 @@ const LogoutButton = ({ to = "/login", history }) => {
           history.push(to);
         }}
       >
-        Logout
+        Log Out
       </Menu.Item>
     )
 }
