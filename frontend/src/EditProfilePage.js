@@ -6,38 +6,24 @@ import { connect } from 'react-redux';
 import { setUser } from './actions';
 
 class EditProfilePage extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      currentUser: {},
-    }
-  }
-
-  componentDidMount = () => {
-    Adapter.getUser()
-    .then(user => {
-      this.setState({ currentUser: user })
-    })
-  }
-
-  handleClick = (event) => {
-    console.log('clicked')
-  }
-
   handleSubmit = (event) => {
+    const json = JSON.parse(localStorage.getItem('state'));
+    const currentUser = json.currentUser
     const username = event.target.username.value
     const firstName = event.target.first_name.value
     const lastName = event.target.last_name.value
     const password = event.target.password.value
-    const user = {id: this.state.currentUser.id, username, first_name: firstName, last_name: lastName}
+    const updatedUser = {id: currentUser.id, username, first_name: firstName, last_name: lastName}
 
-    Adapter.editUser(this.state.currentUser, username, firstName, lastName, password)
-    .then(this.props.setUser(user))
+    Adapter.editUser(currentUser, username, firstName, lastName, password)
+    .then(this.props.setUser(updatedUser))
     .then(this.props.history.push('/profile'))
   }
 
   render() {
+    const json = JSON.parse(localStorage.getItem('state'));
+    const currentUser = json.currentUser
+
     return (
       <div className="edit-profile-page">
         <Form onSubmit={(event)=>this.handleSubmit(event)}>
@@ -46,7 +32,7 @@ class EditProfilePage extends React.Component {
             <input
               type="text"
               name="username"
-              defaultValue={this.state.currentUser.username}
+              defaultValue={currentUser.username}
             />
           </Form.Field>
 
@@ -55,7 +41,7 @@ class EditProfilePage extends React.Component {
             <input
               type="text"
               name="first_name"
-              defaultValue={this.state.currentUser.first_name}
+              defaultValue={currentUser.first_name}
             />
           </Form.Field>
 
@@ -64,7 +50,7 @@ class EditProfilePage extends React.Component {
             <input
               type="text"
               name="last_name"
-              defaultValue={this.state.currentUser.last_name}
+              defaultValue={currentUser.last_name}
             />
           </Form.Field>
 
@@ -87,18 +73,10 @@ class EditProfilePage extends React.Component {
   }
 }
 
-// function mapStateToProps(state) {
-//   return {
-//     currentUser: state.currentUser,
-//   }
-// }
-
-
 function mapDispatchToProps(dispatch) {
   return {
-    setUser: (currentUser) => dispatch(setUser(currentUser)),
+    setUser: (user) => dispatch(setUser(user)),
   }
 }
-
 
 export default withRouter(connect(null, mapDispatchToProps)(EditProfilePage));

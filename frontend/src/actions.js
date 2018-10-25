@@ -64,11 +64,11 @@ export function endTour() {
   }
 }
 
-export function setUser(currentUser) {
+export function setUser(user) {
   return {
     type: "SET_USER",
     payload: {
-      currentUser
+      currentUser: user
     }
   }
 }

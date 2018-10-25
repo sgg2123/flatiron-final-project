@@ -6,8 +6,6 @@ import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { updateDetails } from './actions';
 // import { updateSelectedSite } from './actions';
-import { setUser } from './actions';
-let count = 0
 
 class ProfilePage extends React.Component {
   constructor() {
@@ -20,8 +18,8 @@ class ProfilePage extends React.Component {
 
   componentDidMount = () => {
     const json = JSON.parse(localStorage.getItem('state'));
-    const user = json.currentUser
-    Adapter.getInterests(user.id)
+    const currentUser = json.currentUser
+    Adapter.getInterests(currentUser.id)
     .then(interests => {
       this.setState({ interests })
     })
@@ -48,6 +46,7 @@ class ProfilePage extends React.Component {
   render() {
     const json = JSON.parse(localStorage.getItem('state'));
     const currentUser = json.currentUser;
+    
     return (
       <div className='profile-page'>
         <h1>{currentUser['first_name']} {currentUser['last_name']}</h1>

@@ -4,23 +4,11 @@ import { Button } from 'semantic-ui-react'
 import { withRouter } from 'react-router';
 
 class DeleteProfilePage extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      currentUser: {},
-    }
-  }
-
-  componentDidMount = () => {
-    Adapter.getUser()
-    .then(user => {
-      this.setState({ currentUser: user })
-    })
-  }
-
   handleDelete = (event) => {
-    Adapter.deleteUser(this.state.currentUser)
+    const json = JSON.parse(localStorage.getItem('state'));
+    const currentUser = json.currentUser
+
+    Adapter.deleteUser(currentUser)
     Adapter.logout();
     this.props.history.push('/');
   }
