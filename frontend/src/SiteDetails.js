@@ -1,23 +1,19 @@
 import React, { Fragment } from 'react';
-// import convert from 'xml-js';
 import UUID from 'uuid';
 import { connect } from 'react-redux';
 import Adapter from './Adapter.js';
 import SiteMap from './SiteMap';
-// import { clearDetails, updateDetails } from './actions';
 import { Button } from 'semantic-ui-react';
 
 class SiteDetails extends React.Component {
   handleFavorite = () => {
     const json = JSON.parse(localStorage.getItem('state'));
-    const user = json.currentUser
-    Adapter.addToFavorites(json.contractID, json.facilityID, json.facilityName, user, json.city, json.state)
+    Adapter.addToFavorites(json.contractID, json.facilityID, json.facilityName, json.currentUser, json.city, json.state)
     .then(jsonResponse => alert(jsonResponse.message))
   }
 
   render() {
     const json = JSON.parse(localStorage.getItem('state'));
-
     return (
       <div className='site-details'>
         <h1> {json.facility} </h1>
@@ -122,12 +118,5 @@ function mapStateToProps(state) {
     facilityName: state.facilityName,
   }
 }
-
-// function mapDispatchToProps(dispatch) {
-//   return {
-//     updateDetails: (details) => dispatch(updateDetails(details)),
-//     clearDetails: () => dispatch(clearDetails()),
-//   }
-// }
 
 export default connect(mapStateToProps, null)(SiteDetails);
