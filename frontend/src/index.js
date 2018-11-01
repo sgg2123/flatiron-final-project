@@ -35,6 +35,7 @@ store.subscribe(() => {
     city: store.getState().city,
     state: store.getState().state,
     searchTerm: store.getState().searchTerm,
+    siteList: store.getState().siteList,
   });
 });
 

@@ -17,9 +17,7 @@ class ProfilePage extends React.Component {
   }
 
   componentDidMount = () => {
-    const json = JSON.parse(localStorage.getItem('state'));
-    const currentUser = json.currentUser
-    Adapter.getInterests(currentUser.id)
+    Adapter.getInterests(this.props.currentUser.id)
     .then(interests => {
       this.setState({ interests })
     })
@@ -44,13 +42,10 @@ class ProfilePage extends React.Component {
   }
 
   render() {
-    const json = JSON.parse(localStorage.getItem('state'));
-    const currentUser = json.currentUser;
-    
     return (
       <div className='profile-page'>
-        <h1>{currentUser['first_name']} {currentUser['last_name']}</h1>
-        <p>Username: {currentUser['username']}</p>
+        <h1>{this.props.currentUser['first_name']} {this.props.currentUser['last_name']}</h1>
+        <p>Username: {this.props.currentUser['username']}</p>
         <p>Your Interests:</p>
         {(this.state.interests.length > 0) ?
           this.state.interests.map(interest => {
@@ -83,6 +78,12 @@ class ProfilePage extends React.Component {
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    currentUser: state.currentUser,
+  }
+}
+
 function mapDispatchToProps(dispatch) {
   return {
     updateDetails: (newState) => dispatch(updateDetails(newState)),
@@ -90,4 +91,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default withRouter(connect(null, mapDispatchToProps)(ProfilePage));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProfilePage));

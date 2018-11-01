@@ -8,8 +8,7 @@ import { clearSearchTerm } from './actions';
 class SearchBar extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
-    const json = JSON.parse(localStorage.getItem('state'));
-    if (json.searchTerm.trim() === '') {
+    if (this.props.searchTerm.trim() === '') {
       alert('Please enter an address, city, state, or zip to start your search!')
     } else {
       fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${this.props.searchTerm}&key=AIzaSyBj13X3O6va1yUvE4S9u4bflAq-FqCTzcY`)

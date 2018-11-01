@@ -10,31 +10,28 @@ import { Button } from 'semantic-ui-react';
 class SiteMap extends React.Component {
 
   componentDidMount = () => {
-    const json = JSON.parse(localStorage.getItem('state'));
-    console.log(json)
     const map = L.map('map', {
-     center: [json.lat, json.lng],
+     center: [this.props.lat, this.props.lng],
      zoom: 15
     });
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
      attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
-    var marker = L.marker([json.lat, json.lng]).addTo(map);
+    var marker = L.marker([this.props.lat, this.props.lng]).addTo(map);
   }
 
   componentWillReceiveProps = (nextprops) => {
-    const json = JSON.parse(localStorage.getItem('state'));
     const mapContainer = document.getElementById('map-container')
     mapContainer.innerHTML = '<div id="map"></div>'
     if (nextprops.toggled3D === true) {
       if (nextprops.touring3D === true) {
         const map = eeGeo.map('map', 'c3d75ab06945250a4c588425ce33a8f2', {
-         center: [json.lat, json.lng],
+         center: [this.props.lat, this.props.lng],
          zoom: 15,
        });
-       var marker = eeGeo.marker([json.lat, json.lng], { title: "My marker" }).addTo(map);
-       const lat = json.lat
-       const lng = json.lng
+       var marker = eeGeo.marker([this.props.lat, this.props.lng], { title: "My marker" }).addTo(map);
+       const lat = this.props.lat
+       const lng = this.props.lng
        map.setView([lat, lng], 13, {headingDegrees:720, animated:true, durationSeconds:12});
        // setTimeout(this.props.endTour, 10000)
        // setTimeout(function() { map.setView([lat, lng], 13, {headingDegrees:270, animated:true, durationSeconds:5}); }, 4000);

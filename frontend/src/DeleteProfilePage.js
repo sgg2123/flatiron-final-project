@@ -2,13 +2,11 @@ import React from 'react';
 import Adapter from './Adapter'
 import { Button } from 'semantic-ui-react'
 import { withRouter } from 'react-router';
+import { connect } from 'react-redux';
 
 class DeleteProfilePage extends React.Component {
   handleDelete = (event) => {
-    const json = JSON.parse(localStorage.getItem('state'));
-    const currentUser = json.currentUser
-
-    Adapter.deleteUser(currentUser)
+    Adapter.deleteUser(this.props.currentUser)
     Adapter.logout();
     this.props.history.push('/');
   }
@@ -20,7 +18,7 @@ class DeleteProfilePage extends React.Component {
   render() {
     return (
       <div className="delete-profile-page">
-        <h1>Are you sure?</h1>
+        <h1>Are you sure, {this.props.currentUser.first_name}?</h1>
         <Button onClick={this.handleCancel}>Cancel</Button>
         <Button onClick={this.handleDelete}>Delete Account</Button>
       </div>
@@ -28,4 +26,10 @@ class DeleteProfilePage extends React.Component {
   }
 }
 
-export default withRouter(DeleteProfilePage);
+function mapStateToProps(state) {
+  return {
+    currentUser: state.currentUser,
+  }
+}
+
+export default withRouter(connect(mapStateToProps, null)(DeleteProfilePage));
