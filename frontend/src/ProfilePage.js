@@ -48,8 +48,11 @@ class ProfilePage extends React.Component {
   render() {
     return (
       <div className='profile-page'>
+
         <h1>{this.props.currentUser['first_name']} {this.props.currentUser['last_name']}</h1>
+
         <p>Username: {this.props.currentUser['username']}</p>
+
         {(this.state.interests.length > 0) ?
           <p>Your Interests:</p>
           :
@@ -57,6 +60,7 @@ class ProfilePage extends React.Component {
             <button className='ui button' role='button' onClick={this.goHome}>No favorites yet, search here!</button>
           </div>
         }
+
         {(this.state.interests.length > 0) ?
           this.state.interests.map(interest => {
             const interestID = interest.id
@@ -77,12 +81,15 @@ class ProfilePage extends React.Component {
           :
           null
         }
-          <button className='ui primary button' role='button' onClick={this.handleEditUser}>
-            Edit Profile
-          </button>
-          <button className='ui secondary button' role='button' onClick={this.handleDeleteAccount}>
-            Delete Account
-          </button>
+
+        <button className='ui primary button' role='button' onClick={this.handleEditUser}>
+          Edit Profile
+        </button>
+        
+        <button className='ui secondary button' role='button' onClick={this.handleDeleteAccount}>
+          Delete Account
+        </button>
+
       </div>
     )
   }
