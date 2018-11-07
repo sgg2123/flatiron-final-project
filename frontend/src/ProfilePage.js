@@ -41,12 +41,22 @@ class ProfilePage extends React.Component {
     this.props.history.push('/profile/delete');
   }
 
+  goHome = () => {
+    this.props.history.push('/');
+  }
+
   render() {
     return (
       <div className='profile-page'>
         <h1>{this.props.currentUser['first_name']} {this.props.currentUser['last_name']}</h1>
         <p>Username: {this.props.currentUser['username']}</p>
-        <p>Your Interests:</p>
+        {(this.state.interests.length > 0) ?
+          <p>Your Interests:</p>
+          :
+          <div>
+            <button className='ui button' role='button' onClick={this.goHome}>No favorites yet, search here!</button>
+          </div>
+        }
         {(this.state.interests.length > 0) ?
           this.state.interests.map(interest => {
             const interestID = interest.id
