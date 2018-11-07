@@ -14,15 +14,14 @@ class SiteDetails extends React.Component {
   render() {
     return (
       <div className='site-details'>
+
         <h1> {this.props.facility} </h1>
-        {
-          this.props.description ?
-          (
+
+        {this.props.description ?
           <Fragment>
             <p><strong>Description: </strong></p>
             <p>{this.props.description}</p>
           </Fragment>
-          )
           :
           null
         }
@@ -33,14 +32,11 @@ class SiteDetails extends React.Component {
           null
         }
 
-        {
-          this.props.streetAddress ?
-          (
+        {this.props.streetAddress ?
           <Fragment>
             <p><strong>Address: </strong></p>
             <p>{this.props.streetAddress}</p>
           </Fragment>
-          )
           :
           null
         }
@@ -50,7 +46,6 @@ class SiteDetails extends React.Component {
         <p>{this.props.zip}</p>
 
         {(this.props.contact.length > 0) ?
-          (
           <Fragment>
             <p><strong>Contact: </strong></p>
             <ul>{this.props.contact.map(contact => {
@@ -63,36 +58,29 @@ class SiteDetails extends React.Component {
                 return <li key={UUID()}>{contact['_attributes']['name']}: {number}</li>
             })}</ul>
           </Fragment>
-          )
           :
           null
         }
 
         {(this.props.amenities.length > 0) ?
-          (
           <Fragment>
             <p><strong>Amenities: </strong></p>
             <ul>{this.props.amenities.map(amenity => <li key={UUID()}>{amenity['_attributes']['name']}</li>)}</ul>
           </Fragment>
-          )
           :
           null
         }
 
-        {
-          this.props.facility ?
-          (
+        {this.props.facility ?
             <Fragment>
               <SiteMap />
               <Button onClick={this.handleFavorite}>💚</Button>
             </Fragment>
-          )
           :
           null
         }
 
       </div>
-
     )
   }
 }
