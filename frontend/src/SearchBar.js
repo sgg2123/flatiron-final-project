@@ -1,11 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Adapter from './Adapter.js';
-import { handleSearchChange } from './actions';
-import { updateSiteList } from './actions';
-import { clearSearchTerm } from './actions';
+import { handleSearchChange, updateSiteList, clearSearchTerm } from './actions';
 
 class SearchBar extends React.Component {
+  componentWillMount = () => {
+    this.props.clearSearchTerm()
+  }
+
   handleSubmit = (event) => {
     event.preventDefault();
     if (this.props.searchTerm.trim() === '') {
@@ -26,7 +28,6 @@ class SearchBar extends React.Component {
         Adapter.getCampgrounds(lat, lng, filters)
         .then(array => {
           this.props.updateSiteList(array)
-          this.props.clearSearchTerm()
           this.props.history.push("/results")
         })
       })
